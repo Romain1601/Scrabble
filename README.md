@@ -2,7 +2,7 @@
 
 Récupérer projet :
 git clone https://github.com/Romain1601/Scrabble.git
-/n Puis dans Eclipse File > Import... > General Existing projects into workspace
+Puis dans Eclipse File > Import... > General Existing projects into workspace
 
 Ajouter modification :
 git add src/fichier.java
