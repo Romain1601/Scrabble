@@ -2,8 +2,9 @@ import java.util.TreeMap;
 
 public class DictionnairePoint {
 	
-	public static void main(String[] args) {
-		TreeMap<String, Integer > liste = new TreeMap<>();
+	static TreeMap<String, Integer> liste = new TreeMap<>();
+	
+	public DictionnairePoint() {
 		liste.put("a", 1);
 		liste.put("b", 3);
 		liste.put("c", 3);
@@ -30,8 +31,15 @@ public class DictionnairePoint {
 		liste.put("x", 10);
 		liste.put("y", 10);
 		liste.put("z", 10);
+    }
+	
+	
+	public static int getvalue(String lettre) {
+		return liste.get(lettre);
 	}
 	
-	 
+	
 
+	
+	
 }
