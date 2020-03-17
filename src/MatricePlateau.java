@@ -16,6 +16,10 @@ public class MatricePlateau {
 		LettreDouble();
 	}
 	
+	public int[][] GetMatrice() {
+		return matrice;
+	}
+
 	public static void MotTriple() {
 		for(int i = 0; i < matrice.length; i++){
             for(int j = 0; j < matrice[i].length; j++){
