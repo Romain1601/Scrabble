@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Random;
 
 public class PieceHasard extends DictionnairePiece  {
@@ -7,7 +6,6 @@ public class PieceHasard extends DictionnairePiece  {
 	static String[] Piecedepart = new String[7];
 	Random rnd = new Random();
 	
-	
 	public PieceHasard() {
 		for(int i=0;i<Piecedepart.length;i++) {
 			int nombre = rnd.nextInt(109);
@@ -15,16 +13,10 @@ public class PieceHasard extends DictionnairePiece  {
 		}
 	}
 	
-	public static String tirage() {
-		return Arrays.toString(Piecedepart);
+	public String[] tirage() {
+		return Piecedepart;
 	}
-	
 	
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		new PieceHasard();
-		System.out.println(tirage());	
-	}
 
 }
