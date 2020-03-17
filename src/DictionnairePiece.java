@@ -61,12 +61,6 @@ public class DictionnairePiece {
 		return listePiece.get(i);
 	}
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		new DictionnairePiece();
-		System.out.println(getPiece(5));
-	}
-	
 	
 
 }
