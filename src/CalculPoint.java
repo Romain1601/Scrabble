@@ -17,13 +17,10 @@ public class CalculPoint extends DictionnairePoint {
 	public static int Point() {
 		return point;
 	}
-	
 
 	public static void main(String[] args) {
-		
 		new CalculPoint("youtube");
 		System.out.println(Point());
-
 	}
 
 }
