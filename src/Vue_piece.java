@@ -15,8 +15,8 @@ public class Vue_piece {
 	public Vue_piece() {
 		
 		
-		 piece.setLayout(new GridLayout(7,1));
-		 piece.setPreferredSize(new Dimension(50,200));
+		 piece.setLayout(new GridLayout(1,7));
+		 piece.setPreferredSize(new Dimension(350,40));
 	        
 	        for(int i=0;i<7;i++) {
 	        	JButton button = new JButton(h[i]);
