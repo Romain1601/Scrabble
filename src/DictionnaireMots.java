@@ -23,15 +23,9 @@ public class DictionnaireMots {
         }
     }
 	
+	public static boolean motExistant(String mot) {
+        return dico.contains(mot);
+    }
 	
 	
-	
-	
-	
-	
-	public static void main(String[] args) {
-		
-		new DictionnaireMots();
-	}
-
 }
