@@ -61,6 +61,18 @@ public class DictionnairePiece {
 		return listePiece.get(i);
 	}
 	
+	public static int getlength() {
+		return listePiece.size();
+	}
 	
+	public static void removeletter(String l) {
+		listePiece.remove(l);
+	}
+	
+	public static ArrayList<String> getlist() {
+		return listePiece;
+	}
+	
+
 
 }
