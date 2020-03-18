@@ -16,8 +16,12 @@ public class MatricePlateau {
 		LettreDouble();
 	}
 	
-	public int[][] GetMatrice() {
+	public static int[][] GetMatrice() {
 		return matrice;
+	}
+	
+	public static int[][] GetMatriceModify() {
+		return matriceModify;
 	}
 
 	public static void MotTriple() {
@@ -126,6 +130,17 @@ public class MatricePlateau {
 		
         
     }
+	
+	public static void afficherMatriceModify() {
+		for(int i = 0; i < 15; i++){
+            for(int j = 0; j < 15; j++){
+                System.out.print(matriceModify[i][j] + " ");
+            }
+            System.out.println();
+        }
+	}
+	
+	
 		
 		
 	
