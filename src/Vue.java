@@ -11,8 +11,6 @@ public class Vue extends JFrame    {
 	static Menu_start menu = new Menu_start();
 	static JFrame fenetre = new JFrame(); 
 	
-	
-	
 	public Vue() {
 		plateau.GetVuePlateau();       
 		fenetre.setTitle("Scrabble");
@@ -21,11 +19,7 @@ public class Vue extends JFrame    {
         fenetre.setResizable(true);
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fenetre.setLayout(new FlowLayout());
-        fenetre.setVisible(true); 
-        
-   
-      
-        
+        fenetre.setVisible(true);    
     }
 	
 	
@@ -41,10 +35,8 @@ public class Vue extends JFrame    {
 		fenetre.add(plateau.GetVuePlateau());
         fenetre.add(piece.GetVuePiece());
 	}
-	
-	
-	
 
+	
     public static void main(String[] args) {
     	menu();
         new Vue();
