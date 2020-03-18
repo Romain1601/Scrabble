@@ -1,15 +1,17 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class Vue_Plateau {
+public class Vue_Plateau implements ActionListener {
 	
 	static JPanel plateau = new JPanel();
 	MatricePlateau matrice = new MatricePlateau();
 	int g[][] = matrice.GetMatrice();
+	static ButtonPlateau b[][] = new ButtonPlateau[15][15];
 
 	
 	public Vue_Plateau() {
@@ -18,31 +20,47 @@ public class Vue_Plateau {
 	        
 	        for(int i=0;i<15;i++) {
 	        	for(int j=0;j<15;j++) {
-	        		JButton button = new JButton();
+	        		b[i][j] = new ButtonPlateau(i,j,"");
 	        		if(g[i][j] == 9) {
-	        			button.setBackground(Color.red);
+	        			b[i][j].GetButton().setBackground(Color.red);
 	        		}
 	        		else if(g[i][j] == 6) {
-	        			button.setBackground(Color.pink);
+	        			b[i][j].GetButton().setBackground(Color.pink);
 	        		}
 	        		else if(g[i][j] == 3) {
-	        			button.setBackground(Color.blue);
+	        			b[i][j].GetButton().setBackground(Color.blue);
 	        		}
 	        		else if(g[i][j] == 2) {
-	        			button.setBackground(Color.cyan);
+	        			b[i][j].GetButton().setBackground(Color.cyan);
 	        		}
 	        		else {
-	        			button.setBackground(Color.green);
+	        			b[i][j].GetButton().setBackground(Color.green);
 	        		}
-	            	button.setOpaque(true);
-	            	button.setBorderPainted(true);
-	            	plateau.add(button);
+	        		b[i][j].GetButton().setOpaque(true);
+	        		b[i][j].GetButton().addActionListener(this);
+	        		b[i][j].GetButton().setBorderPainted(true);
+	            	plateau.add(b[i][j].GetButton());
 	        	}
 	        }
 	}
 	
 	public JPanel GetVuePlateau() {
 		return plateau;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object source = e.getSource();
+		for(int i=0;i<15;i++) {
+			for(int j=0;j<15;j++) {
+				if(source == b[i][j].GetButton()) {
+					System.out.println(b[i][j].GetxButton() +","+ b[i][j].GetyButton());
+					
+				}	
+			}
+			
+		}
+		
 	}
 
 
