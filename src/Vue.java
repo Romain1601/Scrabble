@@ -12,9 +12,10 @@ public class Vue extends JFrame    {
 	static JFrame fenetre = new JFrame(); 
 	
 	public Vue() {
+		
 		plateau.GetVuePlateau();       
 		fenetre.setTitle("Scrabble");
-		fenetre.setSize(450, 600);
+		fenetre.setSize(800, 1000);
 		fenetre.setLocationRelativeTo(null); 
         fenetre.setResizable(true);
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -40,6 +41,7 @@ public class Vue extends JFrame    {
     public static void main(String[] args) {
     	menu();
         new Vue();
+       
        
    }
 
