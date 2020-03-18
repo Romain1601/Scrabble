@@ -1,21 +1,44 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 public class PieceHasard extends DictionnairePiece  {
 	
-	DictionnairePiece  dico = new DictionnairePiece();
-	static String[] Piecedepart = new String[7];
+	 
+	static ArrayList<String> Piecedepart = new ArrayList<String>();
 	Random rnd = new Random();
 	
 	public PieceHasard() {
-		for(int i=0;i<Piecedepart.length;i++) {
-			int nombre = rnd.nextInt(109);
-			Piecedepart[i] = DictionnairePiece.getPiece(nombre);
+		for(int i=0;i<7;i++) {
+			int nombre = rnd.nextInt(DictionnairePiece.getlength());
+			Piecedepart.add(DictionnairePiece.getPiece(nombre));
 		}
 	}
 	
-	public String[] tirage() {
+	public static  String getdepart(int i) {
+		return Piecedepart.get(i);
+	}
+	
+	public static ArrayList<String> getPiecedepart() {
 		return Piecedepart;
 	}
+	
+	public static int indexListe(String i) {
+		return Piecedepart.indexOf(i);
+	}
+	
+	public static void RemoveListe(int i) {
+		Piecedepart.remove(i);
+	}
+	public static int getsizedepart() {
+		return Piecedepart.size();
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 
 
