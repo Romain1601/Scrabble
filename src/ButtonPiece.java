@@ -1,16 +1,12 @@
 
-
-
-
+import java.awt.Color;
 import javax.swing.JButton;
-import javax.swing.JPanel;
 
 public class ButtonPiece {
 	
 	int num;
 	String name;
 	JButton button;
-	JPanel r;
 	
 	
 	
@@ -18,6 +14,9 @@ public class ButtonPiece {
 		this.num = num;
         this.name = name;
         button = new JButton(name);
+        button.setBackground(Color.orange);
+        button.setOpaque(true);
+        button.setBorderPainted(true);
 	}
 	
 	public JButton GetButton() {
