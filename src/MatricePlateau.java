@@ -170,7 +170,7 @@ public class MatricePlateau {
 	
 	
 	public static void main(String[] args) {
-		/*new MatricePlateau();
+		new MatricePlateau();
 		
 		
 		for(int i = 0; i < matrice.length; i++){
@@ -187,7 +187,7 @@ public class MatricePlateau {
             System.out.println();
         }
 		System.out.println();
-		System.out.println(error);*/
+		System.out.println(error);
 	}
 
 }
