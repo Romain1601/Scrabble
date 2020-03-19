@@ -34,8 +34,8 @@ public class ButtonPlateau {
 		button.setBackground(Color.CYAN);
 	}
 	
-	public void ButtonGreen() {
-		button.setBackground(Color.GREEN);
+	public void ButtonWhite() {
+		button.setBackground(Color.WHITE);
 	}
 	
 	public void ButtonORANGE() {
