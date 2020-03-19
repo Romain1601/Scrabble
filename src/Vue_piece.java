@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -17,14 +18,22 @@ public class Vue_piece implements ActionListener {
 		if(k==1) {
 			new PieceHasard();
 		}
+		/*if(DictionnairePiece.getlength()>0) {
+			PieceHasard.addletterHasard();
+		}*/
+		System.out.println(7-PieceHasard.getsizedepart());
 		piece.setLayout(new GridLayout(1,PieceHasard.getsizedepart()));
-		piece.setPreferredSize(new Dimension(350,40));
+		piece.setPreferredSize(new Dimension(500,50));
 	        for(int i=0;i<PieceHasard.getsizedepart();i++) {
+	        	
 	        	b.add(new ButtonPiece(i,PieceHasard.getdepart(i)));
 	        	b.get(i).GetButton().addActionListener(this);
             	piece.add(b.get(i).GetButton());
 	        	}
+	        
+	      
 	        }
+		
 	
 	
 	public JPanel GetVuePiece() {
@@ -33,7 +42,16 @@ public class Vue_piece implements ActionListener {
 	
 	public static void removeButton(String i) {
 		index = PieceHasard.indexListe(i);
-		b.remove(index);
+		b.clear();
+		
+			
+	}
+	
+	public static void clearColorSelectButton() {
+		for(int i=0;i<PieceHasard.getsizedepart();i++) {
+			b.get(i).GetButton().setBackground(Color.ORANGE);
+		}
+		
 		
 			
 	}
@@ -45,6 +63,7 @@ public class Vue_piece implements ActionListener {
 		piece.removeAll();	
 		k=2;
 		new Vue_piece();
+		
 	}
 	
 	
@@ -53,7 +72,9 @@ public class Vue_piece implements ActionListener {
 		Object source = e.getSource();
 		for(int i=0;i<PieceHasard.getsizedepart();i++) {
 			if(source == b.get(i).GetButton()) {
+				clearColorSelectButton();
 				RecupPiece.changePiece(b.get(i).GetNameButton());
+				b.get(i).GetButton().setBackground(Color.yellow);
 			}	
 		}
 		 
