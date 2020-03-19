@@ -2,7 +2,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import java.util.Arrays;
 
 import javax.swing.JPanel;
 
@@ -10,6 +10,7 @@ public class Vue_Plateau implements ActionListener {
 	
 	static JPanel plateau = new JPanel();
 	static ButtonPlateau b[][] = new ButtonPlateau[15][15];
+	
 	static int k=1;
 
 	
@@ -19,7 +20,6 @@ public class Vue_Plateau implements ActionListener {
 		}
 		 plateau.setLayout(new GridLayout(15,15));
 	     plateau.setPreferredSize(new Dimension(700,600));
-	     MatricePlateau.afficherMatriceEtat() ;
 	        for(int i=0;i<15;i++) {
 	        	for(int j=0;j<15;j++) {
 	        		
@@ -38,7 +38,7 @@ public class Vue_Plateau implements ActionListener {
 	        		}
 					
 	        		else {
-	        			b[i][j].ButtonGreen();
+	        			b[i][j].ButtonWhite();
 	        		}
 	        		if(MatricePlateau.GetMatriceModify()[j][i]==1) {
 	        			if(MatricePlateau.GetMatriceEtat()[j][i] == RecupPiece.Pieceselect()) {
@@ -61,7 +61,7 @@ public class Vue_Plateau implements ActionListener {
 	}
 	
 	
-	public static void addPiecePlateau(){
+	public static void updatePlateau(){
 		plateau.removeAll();
 		new Vue_Plateau();
 		
@@ -73,13 +73,23 @@ public class Vue_Plateau implements ActionListener {
 		for(int i=0;i<15;i++) {
 			for(int j=0;j<15;j++) {
 				if(source == b[i][j].GetButton()) {
-					if(RecupPiece.Pieceselect()!=null) {
+					if(RecupPiece.Pieceselect()!=null && MatricePlateau.GetMatriceModify()[j][i]!=1) {
 						DictionnairePiece.removeletter(RecupPiece.Pieceselect());
 						Vue_piece.removePiece(RecupPiece.Pieceselect());
 						MatricePlateau.addlettre(b[i][j].GetxButton(),b[i][j].GetyButton(),RecupPiece.Pieceselect());
-						addPiecePlateau();
+						updatePlateau();
 						RecupPiece.changePiece(null);
 						new Vue();
+					}
+					else {
+						int[] c = {i,j};
+						System.out.println(Arrays.toString(c));
+						/*if(CoorPiecePlateau.ifexist(c) == -1) {
+							new CoorPiecePlateau(i,j);
+						}*/
+						
+						
+						
 					}
 					
 				
