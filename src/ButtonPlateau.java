@@ -46,8 +46,6 @@ public class ButtonPlateau {
 		button.setText(i);
 	}
 	
-	
-	
 	public JButton GetButton() {
         return button;
 	}
