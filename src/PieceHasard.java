@@ -5,7 +5,7 @@ public class PieceHasard extends DictionnairePiece  {
 	
 	 
 	static ArrayList<String> Piecedepart = new ArrayList<String>();
-	Random rnd = new Random();
+	static Random rnd = new Random();
 	
 	public PieceHasard() {
 		for(int i=0;i<7;i++) {
@@ -16,6 +16,13 @@ public class PieceHasard extends DictionnairePiece  {
 	
 	public static  String getdepart(int i) {
 		return Piecedepart.get(i);
+	}
+	
+	public static void addletterHasard() {
+		int nombre = rnd.nextInt(DictionnairePiece.getlength());
+		Piecedepart.add(DictionnairePiece.getPiece(nombre));
+		
+		
 	}
 	
 	public static ArrayList<String> getPiecedepart() {
