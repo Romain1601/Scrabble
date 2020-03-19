@@ -3,6 +3,7 @@ public class MatricePlateau {
 	
 	static int[][] matrice = new int[15][15];
 	static int[][] matriceModify = new int[15][15];
+	static String[][] matriceEtat = new String[15][15];
 	static String error ="pas d'erreur";
 	
 	
@@ -16,13 +17,7 @@ public class MatricePlateau {
 		LettreDouble();
 	}
 	
-	public static int[][] GetMatrice() {
-		return matrice;
-	}
 	
-	public static int[][] GetMatriceModify() {
-		return matriceModify;
-	}
 
 	public static void MotTriple() {
 		for(int i = 0; i < matrice.length; i++){
@@ -118,11 +113,31 @@ public class MatricePlateau {
 	    }
 	}
 	
+	public static void matriceEtat() {
+		for(int i = 0; i < matriceEtat.length; i++){
+	        matriceEtat[i] = new String[15];
+	    }
+	}
 	
 	
-	public static void addlettre(int x,int y) {
+	public static int[][] GetMatrice() {
+		return matrice;
+	}
+	
+	public static int[][] GetMatriceModify() {
+		return matriceModify;
+	}
+	
+	public static String[][] GetMatriceEtat() {
+		return matriceEtat;
+	}
+	
+	
+	
+	public static void addlettre(int x,int y,String name) {
 		if(matriceModify[y][x]==0) {
 	        matriceModify[y][x]+=1;
+	        matriceEtat[y][x]=name;
 		}
 		else {
 			error = "case deja utilisé";
@@ -130,6 +145,15 @@ public class MatricePlateau {
 		
         
     }
+	
+	public static void afficherMatriceEtat() {
+		for(int i = 0; i < 15; i++){
+            for(int j = 0; j < 15; j++){
+                System.out.print(matriceEtat[i][j] + " ");
+            }
+            System.out.println();
+        }
+	}
 	
 	public static void afficherMatriceModify() {
 		for(int i = 0; i < 15; i++){
@@ -146,8 +170,8 @@ public class MatricePlateau {
 	
 	
 	public static void main(String[] args) {
-		new MatricePlateau();
-		addlettre(5,5);
+		/*new MatricePlateau();
+		
 		
 		for(int i = 0; i < matrice.length; i++){
             for(int j = 0; j < matrice[i].length; j++){
@@ -163,7 +187,7 @@ public class MatricePlateau {
             System.out.println();
         }
 		System.out.println();
-		System.out.println(error);
+		System.out.println(error);*/
 	}
 
 }
