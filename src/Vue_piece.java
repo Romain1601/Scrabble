@@ -21,11 +21,9 @@ public class Vue_piece implements ActionListener {
 		/*if(DictionnairePiece.getlength()>0) {
 			PieceHasard.addletterHasard();
 		}*/
-		System.out.println(7-PieceHasard.getsizedepart());
 		piece.setLayout(new GridLayout(1,PieceHasard.getsizedepart()));
 		piece.setPreferredSize(new Dimension(500,50));
 	        for(int i=0;i<PieceHasard.getsizedepart();i++) {
-	        	
 	        	b.add(new ButtonPiece(i,PieceHasard.getdepart(i)));
 	        	b.get(i).GetButton().addActionListener(this);
             	piece.add(b.get(i).GetButton());
@@ -42,10 +40,10 @@ public class Vue_piece implements ActionListener {
 	
 	public static void removeButton(String i) {
 		index = PieceHasard.indexListe(i);
-		b.clear();
-		
-			
+		b.clear();	
 	}
+	
+	
 	
 	public static void clearColorSelectButton() {
 		for(int i=0;i<PieceHasard.getsizedepart();i++) {
@@ -56,14 +54,20 @@ public class Vue_piece implements ActionListener {
 			
 	}
 	
+	public static void add(String name){
+		b.clear();
+		PieceHasard.reprendrePiece(name);
+		piece.removeAll();	
+		new Vue_piece();
+	}
+	
 	
 	public static void removePiece(String name){
-		removeButton(name);
+		b.clear();
 		PieceHasard.RemoveListe(index);
 		piece.removeAll();	
 		k=2;
 		new Vue_piece();
-		
 	}
 	
 	
