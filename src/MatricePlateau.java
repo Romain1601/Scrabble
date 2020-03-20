@@ -136,14 +136,43 @@ public class MatricePlateau {
 	
 	public static void addlettre(int x,int y,String name) {
 		if(matriceModify[y][x]==0) {
-	        matriceModify[y][x]+=1;
+	        matriceModify[y][x]=1;
 	        matriceEtat[y][x]=name;
 		}
 		else {
 			error = "case deja utilisé";
+		}  
+    }
+	
+
+	
+	public static void selectlettre(int x,int y) {
+		if(matriceModify[y][x]==1) {
+	        matriceModify[y][x]=2;
 		}
-		
-        
+		else {
+			error = "case deja utilisé";
+		}  
+    }
+	
+	public static void unselectlettre(int x,int y) {
+		if(matriceModify[y][x]==2) {
+	        matriceModify[y][x]=1;
+		}
+		else {
+			error = "case deja utilisé";
+		}  
+    }
+	
+	
+	public static void removelettre(int x,int y) {
+		if(matriceModify[y][x]==1) {
+	        matriceModify[y][x]=0;
+	        matriceEtat[y][x]=null;
+		}
+		else {
+			error = "0 cases";
+		}  
     }
 	
 	public static void afficherMatriceEtat() {
