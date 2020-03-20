@@ -41,7 +41,8 @@ public class Menu_start implements ActionListener  {
 		if(source == Menu_start.Getbutton(0)){
 			Vue.removeMenu();
 			Vue.jeu();
-			Vue.addvalider();
+			Vue.addButtonValider();
+			Vue.addButtonPiocher();
 			new Vue();
 		}
 		
