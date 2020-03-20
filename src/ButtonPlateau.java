@@ -42,6 +42,9 @@ public class ButtonPlateau {
 		button.setBackground(Color.ORANGE);
 	}
 	
+	public void ButtonYellow() {
+		button.setBackground(Color.yellow);
+	}
 	public void setlabelButton(String i) {
 		button.setText(i);
 	}
