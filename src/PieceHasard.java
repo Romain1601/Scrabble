@@ -21,8 +21,10 @@ public class PieceHasard extends DictionnairePiece  {
 	public static void addletterHasard() {
 		int nombre = rnd.nextInt(DictionnairePiece.getlength());
 		Piecedepart.add(DictionnairePiece.getPiece(nombre));
-		
-		
+	}
+	
+	public static void reprendrePiece(String name) {
+		Piecedepart.add(name);
 	}
 	
 	public static ArrayList<String> getPiecedepart() {
