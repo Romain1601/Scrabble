@@ -37,14 +37,14 @@ public class Menu_start implements ActionListener  {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Object source = e.getSource();
+		/*Object source = e.getSource();
 		if(source == Menu_start.Getbutton(0)){
 			Vue.removeMenu();
 			Vue.jeu();
 			Vue.addButtonValider();
 			Vue.addButtonPiocher();
 			new Vue();
-		}
+		}*/
 		
 	}
 	
