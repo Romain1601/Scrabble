@@ -1,8 +1,7 @@
-
-import java.awt.Color;
+package com.sdz.vue;
 import javax.swing.JButton;
 
-public class ButtonPiece {
+public class LettreChevalet {
 	
 	int num;
 	String name;
@@ -10,11 +9,10 @@ public class ButtonPiece {
 	
 	
 	
-	public ButtonPiece(int num, String name) {
+	public LettreChevalet(int num, String name) {
 		this.num = num;
         this.name = name;
         button = new JButton(name);
-        button.setBackground(Color.orange);
         button.setOpaque(true);
         button.setBorderPainted(true);
 	}
