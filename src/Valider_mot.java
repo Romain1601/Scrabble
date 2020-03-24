@@ -44,7 +44,7 @@ public class Valider_mot implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		Object source = e.getSource();
+		/*Object source = e.getSource();
 		if(source == ValiderBouton){
 			if(Vue_Plateau.getlist().size()>0) {
 				changeEtatValider(true);
@@ -52,7 +52,7 @@ public class Valider_mot implements ActionListener{
 			
 				
 				
-		}
+		}*/
 		
 		}
 		
