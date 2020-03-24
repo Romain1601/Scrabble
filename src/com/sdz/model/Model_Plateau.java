@@ -1,25 +1,16 @@
+package com.sdz.model;
 
-public class MatricePlateau {
+public class Model_Plateau extends Abstract_Model_Plateau  {
 	
-	static int[][] matrice = new int[15][15];
-	static int[][] matriceModify = new int[15][15];
-	static String[][] matriceEtat = new String[15][15];
-	static String error ="pas d'erreur";
-	
-	
-	public MatricePlateau() {
-		for(int i = 0; i < matrice.length; i++){
-	        matrice[i] = new int[15];
-	    }
-		MotTriple();
-		MotDouble();
-		LettreTriple();
-		LettreDouble();
+	public Model_Plateau() {
+		MotTriple(matriceStatique);
+		MotDouble(matriceStatique);
+		LettreTriple(matriceStatique);
+		LettreDouble(matriceStatique);
 	}
 	
-	
-
-	public static void MotTriple() {
+	@Override
+	public void MotTriple(int[][] matrice) {
 		for(int i = 0; i < matrice.length; i++){
             for(int j = 0; j < matrice[i].length; j++){
             	if(i==0 && j==0 || i==matrice.length-1 && j==matrice.length-1 || i==0 && j==matrice.length-1 || i==matrice.length-1 && j==0) {
@@ -34,9 +25,12 @@ public class MatricePlateau {
             	
             }
        }
+		
 	}
-	
-	public static void MotDouble() {
+
+	@Override
+	public void MotDouble(int[][] matrice) {
+		// TODO Auto-generated method stub
 		for(int i = 0; i < matrice.length; i++){
             for(int j = 0; j < matrice[i].length; j++){
             	if(i==j && i>0 && i<5) {
@@ -53,9 +47,14 @@ public class MatricePlateau {
             	}
             }
        }
+		
 	}
-	
-	public static void LettreTriple() {
+
+
+
+	@Override
+	public void LettreTriple(int[][] matrice) {
+		// TODO Auto-generated method stub
 		for(int i = 0; i < matrice.length; i++){
             for(int j = 0; j < matrice[i].length; j++){
             	if(i==5 && j==5 || i==9 && j==9 || i==5 && j==9 || i==9 && j==5 ) {
@@ -69,10 +68,14 @@ public class MatricePlateau {
             	}
             }
        }
+		
 	}
-	
-	
-	public static void LettreDouble() {
+
+
+
+	@Override
+	public void LettreDouble(int[][] matrice) {
+		// TODO Auto-generated method stub
 		for(int i = 0; i < matrice.length; i++){
             for(int j = 0; j < matrice[i].length; j++){
             	if(i==6 && j==6 || i==8 && j==8 || i==6 && j==8 || i==8 && j==6 ) {
@@ -105,118 +108,102 @@ public class MatricePlateau {
             	}
             }
        }
+		
+	}
+
+
+
+	@Override
+	public int[][] getMatriceStatique() {
+		// TODO Auto-generated method stub
+		return matriceStatique;
 	}
 	
-	public static void matriceModify() {
-		for(int i = 0; i < matriceModify.length; i++){
-	        matriceModify[i] = new int[15];
-	    }
-	}
-	
-	public static void matriceEtat() {
-		for(int i = 0; i < matriceEtat.length; i++){
-	        matriceEtat[i] = new String[15];
-	    }
-	}
-	
-	
-	public static int[][] GetMatrice() {
-		return matrice;
-	}
-	
-	public static int[][] GetMatriceModify() {
-		return matriceModify;
-	}
-	
-	public static String[][] GetMatriceEtat() {
+	@Override
+	public int[][] getMatriceEtat() {
+		// TODO Auto-generated method stub
 		return matriceEtat;
 	}
+
+
+
+
+	@Override
+	public String[][] getMatriceLettre() {
+		// TODO Auto-generated method stub
+		return  matriceLettre;
+	}
 	
 	
-	
-	public static void addlettre(int x,int y,String name) {
-		if(matriceModify[y][x]==0) {
-	        matriceModify[y][x]=1;
-	        matriceEtat[y][x]=name;
+	public String getMatriceLettre(int x,int y) {
+		// TODO Auto-generated method stub
+		return  matriceLettre[x][y];
+	}
+
+
+
+	@Override
+	public void addLettrePlateau(int x, int y, String lettre) {
+		if(matriceEtat[y][x]==0) {
+	        matriceEtat[y][x]=1;
+	        matriceLettre[y][x]=lettre;
+	        notifyObserver("plateau");
 		}
-		else {
-			error = "case deja utilisé";
-		}  
-    }
+		
+	}
+
+
+
+	@Override
+	public void selectLettrePlateau(int x, int y) {
+		if(matriceEtat[y][x]==1) {
+	        matriceEtat[y][x]=2;
+	        notifyObserver("plateau");
+		}
+		
+		
+	}
+
+
+
+	@Override
+	public void unselectLettrePlateau(int x, int y) {
+		if(matriceEtat[y][x]==2) {
+	        matriceEtat[y][x]=1;
+	        notifyObserver("plateau");
+		}
+		
+	}
+
+
+
+	@Override
+	public void removeLettrePlateau(int x, int y) {
+		if(matriceEtat[y][x]==1) {
+	        matriceEtat[y][x]=0;
+	        matriceLettre[y][x]=null;
+	        notifyObserver("plateau");
+		}
+		
+		
+	}
+
+	@Override
+	public String getLettreSelect() {
+		return lettreSelect;
+	}
+
+	@Override
+	public void lettreSelect(String l) {
+		lettreSelect=l;
+		notifyObserver("plateau");
+	}
+	
 	
 
 	
-	public static void selectlettre(int x,int y) {
-		if(matriceModify[y][x]==1) {
-	        matriceModify[y][x]=2;
-		}
-		else {
-			error = "case deja utilisé";
-		}  
-    }
-	
-	public static void unselectlettre(int x,int y) {
-		if(matriceModify[y][x]==2) {
-	        matriceModify[y][x]=1;
-		}
-		else {
-			error = "case deja utilisé";
-		}  
-    }
 	
 	
-	public static void removelettre(int x,int y) {
-		if(matriceModify[y][x]==1) {
-	        matriceModify[y][x]=0;
-	        matriceEtat[y][x]=null;
-		}
-		else {
-			error = "0 cases";
-		}  
-    }
 	
-	public static void afficherMatriceEtat() {
-		for(int i = 0; i < 15; i++){
-            for(int j = 0; j < 15; j++){
-                System.out.print(matriceEtat[i][j] + " ");
-            }
-            System.out.println();
-        }
-	}
-	
-	public static void afficherMatriceModify() {
-		for(int i = 0; i < 15; i++){
-            for(int j = 0; j < 15; j++){
-                System.out.print(matriceModify[i][j] + " ");
-            }
-            System.out.println();
-        }
-	}
-	
-	
-		
-		
-	
-	
-	public static void main(String[] args) {
-		new MatricePlateau();
-		
-		
-		for(int i = 0; i < matrice.length; i++){
-            for(int j = 0; j < matrice[i].length; j++){
-                System.out.print(matrice[i][j] + " ");
-            }
-            System.out.println();
-        }
-		System.out.println();
-		for(int i = 0; i < matriceModify.length; i++){
-            for(int j = 0; j < matriceModify[i].length; j++){
-                System.out.print(matriceModify[i][j] + " ");
-            }
-            System.out.println();
-        }
-		System.out.println();
-		System.out.println(error);
-	}
 
 }
