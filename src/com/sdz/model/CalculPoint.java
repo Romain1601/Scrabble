@@ -1,6 +1,6 @@
+package com.sdz.model;
 
-
-public class CalculPoint extends DictionnairePoint {
+/*public class CalculPoint extends DictionnairePoint {
 	
 	String mot;
 	static int point;
@@ -23,4 +23,4 @@ public class CalculPoint extends DictionnairePoint {
 		System.out.println(Point());
 	}
 
-}
+}*/
