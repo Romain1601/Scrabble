@@ -1,3 +1,5 @@
+package com.sdz.model;
+
 import java.util.TreeMap;
 
 public class DictionnairePoint {
