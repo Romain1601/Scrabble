@@ -1,77 +1,118 @@
+package com.sdz.model;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
+import com.sdz.observer.Observable;
+import com.sdz.observer.Observer;
 
-public class DictionnairePiece {
+
+public class Model_Pioche implements Observable  {
 	
-	public static ArrayList<String> listePiece = new ArrayList<String>();
+	public ArrayList<String> Pioche = new ArrayList<String>();
+	public ArrayList<Observer> PiocheObserver = new ArrayList<Observer>();
 	
-	
-	public DictionnairePiece() {
+	public Model_Pioche() {
 		for(int i=0;i<9;i++) {
-			listePiece.add("a");
+			Pioche.add("a");
 		}
 		for(int i=0; i<2;i++) {
-			listePiece.add("b");
-			listePiece.add("c");
-			listePiece.add("f");
-			listePiece.add("g");
-			listePiece.add("h");
-			listePiece.add("p");
-			listePiece.add("v");
+			Pioche.add("b");
+			Pioche.add("c");
+			Pioche.add("f");
+			Pioche.add("g");
+			Pioche.add("h");
+			Pioche.add("p");
+			Pioche.add("v");
 		}
 		
 		for(int i=0; i<3;i++) {
-			listePiece.add("d");
-			listePiece.add("m");
+			Pioche.add("d");
+			Pioche.add("m");
 		}
 		
 		for(int i=0; i<6;i++) {
-			listePiece.add("r");
-			listePiece.add("s");
-			listePiece.add("t");
-			listePiece.add("u");
-			listePiece.add("n");
-			listePiece.add("o");
+			Pioche.add("r");
+			Pioche.add("s");
+			Pioche.add("t");
+			Pioche.add("u");
+			Pioche.add("n");
+			Pioche.add("o");
 		}
 		
 		for(int i=0; i<15;i++) {
-			listePiece.add("e");
+			Pioche.add("e");
 		}
 		
 		for(int i=0; i<5;i++) {
-			listePiece.add("l");
+			Pioche.add("l");
 		}
 		
 		for(int i=0; i<8;i++) {
-			listePiece.add("i");
+			Pioche.add("i");
 		}
-		listePiece.add("j");
-		listePiece.add("k");
-		listePiece.add("q");
-		listePiece.add("w");
-		listePiece.add("x");
-		listePiece.add("y");
-		listePiece.add("z");
+		Pioche.add("j");
+		Pioche.add("k");
+		Pioche.add("q");
+		Pioche.add("w");
+		Pioche.add("x");
+		Pioche.add("y");
+		Pioche.add("z");
 		
-		Collections.sort(listePiece);
+		Collections.sort(Pioche);
     }
 	
-	public static String getPiece(int i) {
-		return listePiece.get(i);
+	public String getLettre(int i) {
+		return Pioche.get(i);
 	}
 	
-	public static int getlength() {
-		return listePiece.size();
+	public int getLength() {
+		return Pioche.size();
 	}
 	
-	public static void removeletter(String l) {
-		listePiece.remove(l);
+	public void removeLettre(ArrayList<String> l) {
+		for(int i=0;i<l.size();i++) {
+			Pioche.remove(l.get(i));
+		}
+		notifyObserver("remove");
+		
 	}
 	
-	public static ArrayList<String> getlist() {
-		return listePiece;
+	public void addLettre(ArrayList<String> l) {
+		System.out.println(l);
+		for(int i=0;i<l.size();i++) {
+			Pioche.add(l.get(i));
+		}
+		notifyObserver("remove");
+		
 	}
+	
+	public ArrayList<String> getList() {
+		return Pioche;
+	}
+
+	@Override
+	public void addObserver(Observer obs) {
+		this.PiocheObserver.add(obs);
+		
+	}
+
+	@Override
+	public void removeObserver() {
+		PiocheObserver = new ArrayList<Observer>();
+		
+	}
+
+	@Override
+	public void notifyObserver(String str) {
+		PiocheObserver.get(1).update(str);
+		
+		
+		
+	}
+		
+	
+
 	
 
 
