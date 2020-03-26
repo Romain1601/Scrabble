@@ -78,8 +78,8 @@ public class Model_Pioche implements Observable  {
 		
 	}
 	
+	
 	public void addLettre(ArrayList<String> l) {
-		System.out.println(l);
 		for(int i=0;i<l.size();i++) {
 			Pioche.add(l.get(i));
 		}
