@@ -8,12 +8,18 @@ public class ListeJoueurs implements Observable{
 	
 	public ArrayList<Joueur> ListeJoueur = new ArrayList<Joueur>();
 	public ArrayList<Observer> ListeJoueurObserver = new ArrayList<Observer>();
+	ArrayList<Joueur> liste;
 	
-	public ListeJoueurs() {
-		Joueur j = new Joueur("loic", 1, 0);
-		Joueur j2 = new Joueur("yoan", 2, 0);
-		addJoueur(j);
-		addJoueur(j2);
+	public ListeJoueurs(Model_Pioche p, ArrayList<Joueur> j) {
+		this.liste =j;
+		addListeJoueur();
+	}
+	
+	
+	public void addListeJoueur() {
+		for(int i=0;i<liste.size();i++) {
+			addJoueur(liste.get(i));
+		}
 	}
 	
 	
@@ -71,6 +77,7 @@ public class ListeJoueurs implements Observable{
 		}
 		notifyObserver(String.valueOf(num));
 	}
+	
 	
 	
 	public int[] GetChevaletEtat(int num) {
@@ -133,6 +140,19 @@ public class ListeJoueurs implements Observable{
 		}
 		
 	}
+	
+	public void ChangePointJoueur(int num, int p) {
+		for(int i=0;i<ListeJoueur.size();i++) {
+			if(ListeJoueur.get(i).getNumJoueur()==num) {
+				ListeJoueur.get(i).addPointJoueur(p);
+				notifyObserver(String.valueOf(num));	
+			}
+		}
+		
+	}
+	
+	
+	
 	
 	
 	@Override
