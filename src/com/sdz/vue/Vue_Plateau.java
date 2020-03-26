@@ -196,7 +196,7 @@ public class Vue_Plateau extends JPanel implements Observer {
 	public void update(String str) {
 		plateau.removeAll();
 		ConstruireVuePlateau();
-		plateau.updateUI();;
+		plateau.updateUI();
 	
 	}
 
