@@ -2,10 +2,16 @@ package com.sdz.vue;
 
 
 
+import java.awt.Color;
+import java.awt.FlowLayout;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import com.sdz.model.ListeJoueurs;
+import com.sdz.model.Model_Choix_Joueur;
 import com.sdz.model.Model_Pioche;
 import com.sdz.vue.Vue_Plateau;
 
@@ -20,17 +26,17 @@ public class Vue extends JFrame   {
 
 	
 	Model_Pioche modelPioche = new Model_Pioche(); 
-	ListeJoueurs listeJoueurs = new ListeJoueurs();
-	Vue_Chevalet_Joueur Vue_chevalet_joueur = new Vue_Chevalet_Joueur(1, modelPioche, listeJoueurs);
-	Vue_Plateau vue_plateau = new Vue_Plateau(listeJoueurs, 1);
 	Vue_Pioche vue_pioche = new Vue_Pioche(modelPioche);
+	Vue_Choix_Joueur menuJoueur = new Vue_Choix_Joueur(modelPioche,this);
 	
-	//Controleur_Plateau c = new Controleur_Plateau(vue_plateau,Model_plateau);
-	/*static PiocherLettre Piocher = new PiocherLettre();
-	static Valider_mot Valider = new Valider_mot();
-	static Vue_piece piece = new Vue_piece();
-	static Menu_start menu = new Menu_start();*/
+	
+
+	ListeJoueurs listeJoueurs;
+	Vue_Chevalet_Joueur Vue_chevalet_joueur;
+	Vue_Plateau vue_plateau;
+	Vue_Point_Joueur vue_point;
 	JFrame fenetre = new JFrame(); 
+	JPanel inside = new JPanel(); 
 	
 	public Vue() {
 		fenetre.setTitle("Scrabble");
@@ -40,24 +46,29 @@ public class Vue extends JFrame   {
         fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         fenetre.setLayout(null);
         fenetre.setVisible(true);
-        fenetre.add(vue_plateau.GetVuePlateau());
-        fenetre.add(vue_pioche.GetVuePioche());
-        fenetre.add(Vue_chevalet_joueur.GetVueNomJoueur());
-        fenetre.add(Vue_chevalet_joueur.GetVueChevaletJoueur());
-        fenetre.add(Vue_chevalet_joueur.GetVueChevaletBoutton());
-        
-        
+        inside.add(menuJoueur.Getformulaire());
+        inside.setBounds(0,0,1000,1000);
+        inside.setLayout(null);
+        fenetre.add(inside);
+       
     }
 	
 	
-	/*public void addPlateauMouseListener() {
-		 for(int i=0;i<15;i++) {
-				for(int j=0;j<15;j++) {
-					vue_plateau.GetButtonPlateau(i,j).addMouseListener(c);
-					
-				}
-		 }
-	}*/
+	public void start(Model_Choix_Joueur j) {
+		inside.removeAll();
+		listeJoueurs = new ListeJoueurs(modelPioche , j.getlisteJoueur());
+		Vue_chevalet_joueur = new Vue_Chevalet_Joueur(j.getlisteJoueur().get(0).getNumJoueur(), modelPioche, listeJoueurs);
+		vue_plateau = new Vue_Plateau(listeJoueurs, j.getlisteJoueur().get(0).getNumJoueur());
+		vue_point = new Vue_Point_Joueur(listeJoueurs);
+		inside.add(vue_plateau.GetVuePlateau());
+		inside.add(vue_pioche.GetVuePioche());
+		inside.add(Vue_chevalet_joueur.GetVueNomJoueur());
+		inside.add(Vue_chevalet_joueur.GetVueChevaletJoueur());
+		inside.add(Vue_chevalet_joueur.GetVueChevaletBoutton());
+		inside.add(vue_point.getVuePoint());
+		inside.updateUI();
+	}
+	
 	
 	
 	
@@ -73,46 +84,6 @@ public class Vue extends JFrame   {
 
 	
 	
-	
-	
-	
-	/*public static void menu() {
-		fenetre.add(menu.GetMenu());
-	}
-	
-	public static void removeMenu() {
-		fenetre.remove(menu.GetMenu());
-	}
-	
-	public static void jeu() {
-		fenetre.add(plateau.GetVuePlateau());
-        fenetre.add(piece.GetVuePiece());
-	}
-	
-	public static void addButtonPiocher() {
-		fenetre.add(Piocher.GetPiocher());  
-	}
-	
-	public static void addButtonValider() {
-		fenetre.add(Valider.Getvalider());  
-	}*/
 
-	
-  
-	
-	
-
-
-
-
-	
-
-	
-	
-	
-	
-	
-	
-	
 
 };
