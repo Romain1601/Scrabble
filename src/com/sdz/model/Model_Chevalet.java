@@ -9,20 +9,44 @@ public class Model_Chevalet {
 	
 	protected ArrayList<String> chevalet;
 	protected int[] chevaletEtat;
-	protected Model_Pioche pioche = new Model_Pioche();
+	Model_Pioche pioche;
 	protected Random rnd = new Random();
+	ArrayList<Integer> nombre;
 	
-	public Model_Chevalet() {
+	public Model_Chevalet(Model_Pioche p) {
+		this.pioche = p;
 		chevalet = new ArrayList<String>();
 		chevaletEtat = new int[7];
 	}
 	
 	public void addLettreHasardChevalet() {
 		if(getChevaletSize()<7) {
-		for(int i=0; i<7; i++) {
-			int nombre = rnd.nextInt(pioche.getLength());
-			chevalet.add(pioche.getLettre(nombre));
-		}
+			nombre = new ArrayList<Integer>();
+			if(pioche.getLength()>7) {
+				
+				for(int i=0; i<7; i++) {
+					int rand =rnd.nextInt(pioche.getLength());
+					while(nombre.contains(rand)==true) {
+						rand =rnd.nextInt(pioche.getLength());
+					}
+					nombre.add(rand);
+				}
+				System.out.println(nombre);
+			}
+			else {
+				for(int i=0; i<pioche.getLength(); i++) {
+					int rand =rnd.nextInt(pioche.getLength());
+					while(nombre.contains(rand)==true) {
+						rand =rnd.nextInt(pioche.getLength());
+					}
+					nombre.add(rand);
+				}
+			}
+			for(int j=0; j<nombre.size();j++) {
+				String lettre = pioche.getLettre(nombre.get(j));
+				chevalet.add(lettre);
+			}
+			pioche.removeLettre(chevalet);
 			
 		}
 	}
