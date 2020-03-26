@@ -6,7 +6,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
-
 import com.sdz.model.ListeJoueurs;
 import com.sdz.model.Model_Pioche;
 
@@ -38,7 +37,6 @@ public class Controleur_Chevalet implements MouseListener, ActionListener {
 		Object source = e.getSource();
 		
 		int buttonDown = e.getButton();
-		System.out.println(buttonDown);
 		for(int i=0;i<listeJoueurs.GetsizeChevalet(vue.GetNumJoueur());i++) {
 			if(buttonDown == MouseEvent.BUTTON1) {
 				if(e.isControlDown() && source == vue.getListeButtonChevalet().get(i).GetButton()) {
@@ -86,8 +84,7 @@ public class Controleur_Chevalet implements MouseListener, ActionListener {
 		if(source == vue.GetButtonPiocher()) {
 			if(listeJoueurs.GetChevalet(vue.GetNumJoueur()).size()<7){
 				listeJoueurs.addLettreHasardChevalet(vue.GetNumJoueur());
-				ArrayList<String> lettre = listeJoueurs.GetChevalet(vue.GetNumJoueur());
-				modelPioche.removeLettre(lettre);
+				//listeJoueurs.ChangePointJoueur(vue.GetNumJoueur(), 5);
 			}
 			
 		}
