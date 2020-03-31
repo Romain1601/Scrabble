@@ -14,50 +14,50 @@ public class Model_Pioche implements Observable  {
 	
 	public Model_Pioche() {
 		for(int i=0;i<9;i++) {
-			Pioche.add("a");
+			Pioche.add("A");
 		}
 		for(int i=0; i<2;i++) {
-			Pioche.add("b");
-			Pioche.add("c");
-			Pioche.add("f");
-			Pioche.add("g");
-			Pioche.add("h");
-			Pioche.add("p");
-			Pioche.add("v");
+			Pioche.add("B");
+			Pioche.add("C");
+			Pioche.add("F");
+			Pioche.add("G");
+			Pioche.add("H");
+			Pioche.add("P");
+			Pioche.add("V");
 		}
 		
 		for(int i=0; i<3;i++) {
-			Pioche.add("d");
-			Pioche.add("m");
+			Pioche.add("D");
+			Pioche.add("M");
 		}
 		
 		for(int i=0; i<6;i++) {
-			Pioche.add("r");
-			Pioche.add("s");
-			Pioche.add("t");
-			Pioche.add("u");
-			Pioche.add("n");
-			Pioche.add("o");
+			Pioche.add("R");
+			Pioche.add("S");
+			Pioche.add("T");
+			Pioche.add("U");
+			Pioche.add("N");
+			Pioche.add("O");
 		}
 		
 		for(int i=0; i<15;i++) {
-			Pioche.add("e");
+			Pioche.add("E");
 		}
 		
 		for(int i=0; i<5;i++) {
-			Pioche.add("l");
+			Pioche.add("L");
 		}
 		
 		for(int i=0; i<8;i++) {
-			Pioche.add("i");
+			Pioche.add("I");
 		}
-		Pioche.add("j");
-		Pioche.add("k");
-		Pioche.add("q");
-		Pioche.add("w");
-		Pioche.add("x");
-		Pioche.add("y");
-		Pioche.add("z");
+		Pioche.add("J");
+		Pioche.add("K");
+		Pioche.add("Q");
+		Pioche.add("W");
+		Pioche.add("X");
+		Pioche.add("Y");
+		Pioche.add("Z");
 		
 		Collections.sort(Pioche);
     }
@@ -105,10 +105,7 @@ public class Model_Pioche implements Observable  {
 
 	@Override
 	public void notifyObserver(String str) {
-		PiocheObserver.get(1).update(str);
-		
-		
-		
+		PiocheObserver.get(0).update(str);
 	}
 		
 	
