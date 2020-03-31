@@ -1,29 +1,42 @@
 package com.sdz.controler;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import com.sdz.model.ListeJoueurs;
+import com.sdz.model.Model_Choix_Joueur;
 import com.sdz.model.Model_Plateau;
+import com.sdz.vue.Vue;
 import com.sdz.vue.Vue_Plateau;
 
-public class Controleur_Plateau implements MouseListener {
+public class Controleur_Plateau implements MouseListener, ActionListener {
 	Vue_Plateau vue;
 	Model_Plateau model;
 	ListeJoueurs listeJoueurs;
 	int NumJoueur;
 	String lettreselect; 
+	Integer EtatSelect; 
+	Vue vueglobale;
+	Model_Choix_Joueur choixJoueur;
 	
-	public Controleur_Plateau(Vue_Plateau v, Model_Plateau m, ListeJoueurs l, int num) {
+	public Controleur_Plateau(Vue_Plateau v, Model_Plateau m, ListeJoueurs l, int num, Vue vg , Model_Choix_Joueur j) {
+		this.choixJoueur =j;
 		this.vue=v;
 		this.model=m;
 		this.listeJoueurs=l;
 		this.NumJoueur=num;
+		this.vueglobale=vg;
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+	}
+	
+	public void Controleur_Plateau_change(Vue_Plateau v, int num) {
+		this.NumJoueur=num;
+		this.vue=v;
 	}
 
 	@Override
@@ -41,16 +54,14 @@ public class Controleur_Plateau implements MouseListener {
 						}
 					
 					}
-					}
 				}
+			}
 			if(exist!=true) {
 				for(int k=0;k<etat.length;k++) {
 					if(etat[k]==1) {
 						lettreselect = listeJoueurs.GetlettreChevalet(NumJoueur,k);
 						listeJoueurs.removeLettreChevalet(NumJoueur,lettreselect);
 						listeJoueurs.changeChevaletEtat(NumJoueur,k,0);
-						
-						
 					}
 				}
 				for(int i=0;i<15;i++) {
@@ -75,7 +86,8 @@ public class Controleur_Plateau implements MouseListener {
 				for(int j=0;j<15;j++) {
 					if(source == vue.grilleButton[i][j]) {
 						lettreselect = model.getMatriceLettre(j,i);
-						if(lettreselect!=null) {
+						EtatSelect = model.getMatriceEtatInt(j,i);
+						if(lettreselect!=null && EtatSelect==1) {
 							model.removeLettrePlateau(i,j);
 							listeJoueurs.addLettreChevalet(NumJoueur,lettreselect);
 							for(int k=0;k<etat.length;k++) {
@@ -110,6 +122,21 @@ public class Controleur_Plateau implements MouseListener {
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object source = e.getSource();
+		if(source == vue.Getboutonvalider()) {
+			int i = NumJoueur+1;
+			if(i>(listeJoueurs.getListeJoueur().size()-1)) {
+				i=0;
+			}
+			model.changeMatriceEtat(2);
+			vueglobale.changeJoueur(choixJoueur,i);
+			
+		}
 		
 	}
 
