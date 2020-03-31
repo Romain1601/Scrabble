@@ -106,15 +106,19 @@ public class Vue_Plateau extends JPanel implements Observer {
 	        			switch(ModelPlateau.getMatriceStatique()[j][i]) {
 	        			case 9:
 	        				grilleButton[i][j].setBackground(colorMT);
+	        				grilleButton[i][j].setText("MT");
 	        				break;
 	        			case 6:
 	        				grilleButton[i][j].setBackground(colorMD);
+	        				grilleButton[i][j].setText("MD");
 	        				break;
 	        			case 3:
 	        				grilleButton[i][j].setBackground(colorLT);
+	        				grilleButton[i][j].setText("LT");
 	        				break;
 	        			case 2:
 	        				grilleButton[i][j].setBackground(colorLD);
+	        				grilleButton[i][j].setText("LT");
 	        				break;
 	        			case 0:
 	        				grilleButton[i][j].setBackground(colorCV);
