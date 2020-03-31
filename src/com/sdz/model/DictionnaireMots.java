@@ -10,13 +10,17 @@ public class DictionnaireMots {
 	
 	static ArrayList<String> dico;
 	Scanner scan;
+	String rep = "src";
+	File path = new File(rep);
+	String chemin = path.getAbsolutePath() + "/ressources/dictionnaire.txt";
+
 
 	
 	
 	public DictionnaireMots() {
         try {
             dico = new ArrayList<>();
-            scan = new Scanner(new File("src/ressources/DicoMots.txt"));
+            scan = new Scanner(new File(chemin));
             while (scan.hasNextLine()) {
                 dico.add(scan.nextLine());
             }

@@ -19,6 +19,7 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 	Integer EtatSelect; 
 	Vue vueglobale;
 	Model_Choix_Joueur choixJoueur;
+	String test="";
 	
 	public Controleur_Plateau(Vue_Plateau v, Model_Plateau m, ListeJoueurs l, int num, Vue vg , Model_Choix_Joueur j) {
 		this.choixJoueur =j;
@@ -70,6 +71,8 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 							if(lettreselect!=null) {
 								if(model.getMatriceLettre(j, i)==null) {
 									model.addLettrePlateau(i,j,lettreselect);
+									test=test+lettreselect;
+									System.out.println(test);
 									lettreselect = null;
 								}
 							
@@ -89,6 +92,7 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 						EtatSelect = model.getMatriceEtatInt(j,i);
 						if(lettreselect!=null && EtatSelect==1) {
 							model.removeLettrePlateau(i,j);
+							System.out.println("lettre retirée" );
 							listeJoueurs.addLettreChevalet(NumJoueur,lettreselect);
 							for(int k=0;k<etat.length;k++) {
 								listeJoueurs.changeChevaletEtat(NumJoueur,k,0);
@@ -133,6 +137,7 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 			if(i>(listeJoueurs.getListeJoueur().size()-1)) {
 				i=0;
 			}
+			test="";
 			model.changeMatriceEtat(2);
 			vueglobale.changeJoueur(choixJoueur,i);
 			
