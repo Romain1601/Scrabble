@@ -95,6 +95,7 @@ public class Vue_Plateau extends JPanel implements Observer {
 	        		Color colorPiece = new Color(239, 210, 80);
 	        		Font ButtonFont = new Font("Arial", Font.PLAIN, 20);
 	        		grilleButton[i][j].addMouseListener(controleur);
+	        		grilleButton[i][j].setOpaque(true);
 	        		grilleButton[i][j].setVerticalTextPosition(AbstractButton.CENTER);
 	        		
 	        		grilleButton[i][j].setFont(ButtonFont);
