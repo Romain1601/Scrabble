@@ -26,7 +26,7 @@ public class Vue_Point_Joueur implements Observer{
 	Vue_Point_Joueur(ListeJoueurs l){
 		this.lj = l;
 		panelPoint.setBackground(Color.BLACK);
-		panelPoint.setBounds(700,20,250,250);
+		panelPoint.setBounds(712,20,250,250);
 		lj.addObserver(this);
 		BuildVueJoueur();
 	}
