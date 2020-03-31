@@ -31,6 +31,7 @@ public class Vue_Chevalet_Joueur implements Observer {
 	ArrayList<String> ListeLettreChevaletselectGreen;
 	LettreChevalet lettreChevalet;
 	int numJoueur;
+	Color colorPiece = new Color(239, 210, 80);
 	
 	
 	public Vue_Chevalet_Joueur(int num, Model_Pioche m, ListeJoueurs l) {
@@ -40,10 +41,10 @@ public class Vue_Chevalet_Joueur implements Observer {
 		controleur = new Controleur_Chevalet(this, modelPioche, listeJoueurs);
 		listeJoueurs.addObserver(this);
 		modelPioche.addObserver(this);
-		NomJoueur.setBounds(100 ,650,450,50);
+		NomJoueur.setBounds(100 ,750,450,50);
 		ChevaletJoueur.setLayout(new GridLayout(1,listeJoueurs.GetJoueur(num).getChevaletJoueur().getChevaletSize()));
-		ChevaletJoueur.setBounds(100 ,700,450,50);
-		BoutonChevalet.setBounds(100 ,800,450,50);
+		ChevaletJoueur.setBounds(100 ,800,450,50);
+		BoutonChevalet.setBounds(100 ,900,450,50);
 		BoutonChevalet.add(Piocher);
 		if(listeJoueurs.GetsizeChevalet(numJoueur)==0) {
 			changerLettre.setVisible(false);
@@ -117,12 +118,16 @@ public class Vue_Chevalet_Joueur implements Observer {
 			ChevaletJoueur.remove(emplacement);
 			ListeVueLettreChevalet = new ArrayList<LettreChevalet>();
 			ListeLettreChevaletselectGreen = new ArrayList<String>();
+			Font ButtonFont = new Font("Arial", Font.PLAIN, 30);
+			
 			int[] etat = listeJoueurs.GetChevaletEtat(n);
 			for(int i=0;i<chevalet.getChevaletSize();i++) {
 				lettreChevalet = new LettreChevalet(i,chevalet.getStringChevalet(i));
 				lettreChevalet.GetButton().addMouseListener(controleur);
+				lettreChevalet.GetButton().setFont(ButtonFont);
 				if(etat[i]==0) {
-					lettreChevalet.GetButton().setBackground(Color.ORANGE);
+					lettreChevalet.GetButton().setBackground(colorPiece);
+					
 				}
 				else if(etat[i]==1) {
 					lettreChevalet.GetButton().setBackground(Color.YELLOW);
