@@ -16,6 +16,7 @@ import com.sdz.observer.Observer;
 public class Vue_Choix_Joueur implements Observer{
 
 	JTextField jtf;
+	Model_Pioche modelPioche;
 	ArrayList<JPanel> listeformulaire = new ArrayList<JPanel>();
 	ArrayList<JTextField> listejtc = new ArrayList<JTextField>();
 	JLabel label;
@@ -31,6 +32,7 @@ public class Vue_Choix_Joueur implements Observer{
 	
 	public Vue_Choix_Joueur(Model_Pioche p, Vue v){
 		this.vue=v;
+		this.modelPioche =p;
 		modeleChoixJoueur = new Model_Choix_Joueur(p);
 		controleur = new Controleur_Choix_Joueur(this, modeleChoixJoueur);
 		formulaire.setBounds(400,100,250,300);
@@ -105,7 +107,6 @@ public class Vue_Choix_Joueur implements Observer{
 	@Override
 	public void update(String str) {
 		if(str=="start") {
-			System.out.println("coucou");
 			vue.start(modeleChoixJoueur);
 		}
 		else {
