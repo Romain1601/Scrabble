@@ -124,6 +124,21 @@ public class Model_Plateau extends Abstract_Model_Plateau  {
 		// TODO Auto-generated method stub
 		return matriceEtat;
 	}
+	
+	
+	public void changeMatriceEtat(int nb) {
+		for(int i = 0; i < matriceEtat.length; i++){
+            for(int j = 0; j < matriceEtat[i].length; j++){
+            	if(matriceEtat[i][j]==1) {
+            		matriceEtat[i][j]=nb;
+            	}
+            	
+            	
+            }
+            
+            
+           }
+	}
 
 
 
@@ -139,7 +154,15 @@ public class Model_Plateau extends Abstract_Model_Plateau  {
 		// TODO Auto-generated method stub
 		return  matriceLettre[x][y];
 	}
+	
+	
+	public int getMatriceEtatInt(int x,int y) {
+		// TODO Auto-generated method stub
+		return  matriceEtat[x][y];
+	}
 
+
+	
 
 
 	@Override
