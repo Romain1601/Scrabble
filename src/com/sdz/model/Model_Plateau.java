@@ -7,9 +7,22 @@ public class Model_Plateau extends Abstract_Model_Plateau  {
 		MotDouble(matriceStatique);
 		LettreTriple(matriceStatique);
 		LettreDouble(matriceStatique);
+		LettreDepart(matriceStatique);
 	}
 	
 	@Override
+	public void LettreDepart(int[][] matrice) {
+		// TODO Auto-generated method stub
+		for(int i = 0; i < matrice.length; i++){
+            for(int j = 0; j < matrice[i].length; j++){
+            	if(i==7 && j==7) {
+            		matrice[i][j] = 1;
+            	}
+            }
+       }
+		
+	}
+	
 	public void MotTriple(int[][] matrice) {
 		for(int i = 0; i < matrice.length; i++){
             for(int j = 0; j < matrice[i].length; j++){
@@ -110,6 +123,7 @@ public class Model_Plateau extends Abstract_Model_Plateau  {
        }
 		
 	}
+	
 
 
 

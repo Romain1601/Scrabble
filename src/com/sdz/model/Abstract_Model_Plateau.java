@@ -20,6 +20,7 @@ public abstract class Abstract_Model_Plateau implements Observable{
 	public abstract void MotDouble(int[][] matrice);
 	public abstract void LettreTriple(int[][] matrice);
 	public abstract void LettreDouble(int[][] matrice);
+	public abstract void LettreDepart(int[][] matrice);
 	
 	
 	public abstract int[][] getMatriceStatique();
@@ -56,7 +57,7 @@ public abstract class Abstract_Model_Plateau implements Observable{
 
 	public void removeObserver() {
 		PlateauObserver = new ArrayList<Observer>();
-	} 
+	}
 		  
 		  
 	}

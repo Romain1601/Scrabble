@@ -39,6 +39,7 @@ public class Vue_Plateau extends JPanel implements Observer {
 	Color colorLT = new Color(17, 119, 179);
 	Color colorLD = new Color(146, 206, 255);
 	Color colorCV = new Color(232, 234, 241);
+	Color colorDep = new Color(252, 255, 170);
 	Color colorNewPiece = new Color(255, 178, 51);
 	Color colorPiece = new Color(239, 210, 80);
 	
@@ -119,6 +120,9 @@ public class Vue_Plateau extends JPanel implements Observer {
 	        			case 2:
 	        				grilleButton[i][j].setBackground(colorLD);
 	        				grilleButton[i][j].setText("LT");
+	        				break;
+	        			case 1:
+	        				grilleButton[i][j].setBackground(colorDep);
 	        				break;
 	        			case 0:
 	        				grilleButton[i][j].setBackground(colorCV);
