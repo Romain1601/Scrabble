@@ -1,13 +1,13 @@
 package com.sdz.model;
 
-/*public class CalculPoint extends DictionnairePoint {
+public class CalculPoint extends DictionnairePoint {
 	
-	String mot;
+	static String mot;
 	static int point;
-	DictionnairePoint liste = new DictionnairePoint();
+	static DictionnairePoint liste = new DictionnairePoint();
 	
 	public CalculPoint(String m) {
-		this.mot = m;
+		CalculPoint.mot = m;
 		for(int i=0; i<m.length();i++) {
 			String s = Character.toString(m.charAt(i));
 			point+=getvalue(s);
@@ -18,9 +18,5 @@ package com.sdz.model;
 		return point;
 	}
 
-	public static void main(String[] args) {
-		new CalculPoint("youtube");
-		System.out.println(Point());
-	}
 
-}*/
+}

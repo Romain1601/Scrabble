@@ -4,6 +4,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import com.sdz.model.CalculPoint;
+import com.sdz.model.DictionnaireMots;
 import com.sdz.model.ListeJoueurs;
 import com.sdz.model.Model_Choix_Joueur;
 import com.sdz.model.Model_Plateau;
@@ -19,7 +21,10 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 	Integer EtatSelect; 
 	Vue vueglobale;
 	Model_Choix_Joueur choixJoueur;
-	String test="";
+	String motatester="";
+	DictionnaireMots Dicos = new DictionnaireMots();
+	
+	
 	
 	public Controleur_Plateau(Vue_Plateau v, Model_Plateau m, ListeJoueurs l, int num, Vue vg , Model_Choix_Joueur j) {
 		this.choixJoueur =j;
@@ -71,8 +76,8 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 							if(lettreselect!=null) {
 								if(model.getMatriceLettre(j, i)==null) {
 									model.addLettrePlateau(i,j,lettreselect);
-									test=test+lettreselect;
-									System.out.println(test);
+									motatester=motatester+lettreselect;
+									System.out.println(motatester);
 									lettreselect = null;
 								}
 							
@@ -133,14 +138,18 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
 		if(source == vue.Getboutonvalider()) {
-			int i = NumJoueur+1;
-			if(i>(listeJoueurs.getListeJoueur().size()-1)) {
-				i=0;
+			if(DictionnaireMots.motExistant(motatester)) {
+				int i = NumJoueur+1;
+				if(i>(listeJoueurs.getListeJoueur().size()-1)) {
+					i=0;
+				}
+				motatester="";
+				model.changeMatriceEtat(2);
+				vueglobale.changeJoueur(choixJoueur,i);
 			}
-			test="";
-			model.changeMatriceEtat(2);
-			vueglobale.changeJoueur(choixJoueur,i);
-			
+			else {
+				System.out.println(DictionnaireMots.motExistant(motatester));
+			}
 		}
 		
 	}
