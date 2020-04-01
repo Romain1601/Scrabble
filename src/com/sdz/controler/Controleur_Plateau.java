@@ -1,8 +1,10 @@
 package com.sdz.controler;
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import com.sdz.model.CalculPoint;
 import com.sdz.model.DictionnaireMots;
@@ -21,8 +23,11 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 	Integer EtatSelect; 
 	Vue vueglobale;
 	Model_Choix_Joueur choixJoueur;
+	ArrayList<String> listelettre = new ArrayList<>();
 	String motatester="";
 	DictionnaireMots Dicos = new DictionnaireMots();
+	String[][] matriceindice = new String[15][15];
+    
 	
 	
 	
@@ -33,9 +38,11 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 		this.listeJoueurs=l;
 		this.NumJoueur=num;
 		this.vueglobale=vg;
+		for(int p = 0; p < matriceindice.length; p++){
+	        matriceindice[p] = new String[15];
+	    }
 	}
-
-	@Override
+	
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 	}
@@ -75,9 +82,8 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 						if(source == vue.grilleButton[i][j]) {
 							if(lettreselect!=null) {
 								if(model.getMatriceLettre(j, i)==null) {
-									model.addLettrePlateau(i,j,lettreselect);
-									motatester=motatester+lettreselect;
-									System.out.println(motatester);
+									model.addLettrePlateau(i,j,lettreselect);					
+									matriceindice[i][j]=lettreselect;
 									lettreselect = null;
 								}
 							
@@ -97,7 +103,7 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 						EtatSelect = model.getMatriceEtatInt(j,i);
 						if(lettreselect!=null && EtatSelect==1) {
 							model.removeLettrePlateau(i,j);
-							System.out.println("lettre retirée" );
+							matriceindice[i][j]=null;
 							listeJoueurs.addLettreChevalet(NumJoueur,lettreselect);
 							for(int k=0;k<etat.length;k++) {
 								listeJoueurs.changeChevaletEtat(NumJoueur,k,0);
@@ -138,6 +144,13 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
 		if(source == vue.Getboutonvalider()) {
+			for(int m = 0; m < matriceindice.length;m++){
+	            for(int n = 0; n < matriceindice[m].length; n++){
+	            	if(matriceindice[m][n]!=null) {
+	            		motatester=motatester+matriceindice[m][n];
+	            	}
+	            }
+	        }
 			if(DictionnaireMots.motExistant(motatester)) {
 				int i = NumJoueur+1;
 				if(i>(listeJoueurs.getListeJoueur().size()-1)) {
@@ -148,7 +161,7 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 				vueglobale.changeJoueur(choixJoueur,i);
 			}
 			else {
-				System.out.println(DictionnaireMots.motExistant(motatester));
+				System.out.println(motatester);
 			}
 		}
 		
