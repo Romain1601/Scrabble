@@ -8,6 +8,7 @@ import java.util.Random;
 public class Model_Chevalet {
 	
 	protected ArrayList<String> chevalet;
+	protected ArrayList<String> LettreRemove;
 	protected int[] chevaletEtat;
 	Model_Pioche pioche;
 	protected Random rnd = new Random();
@@ -40,11 +41,13 @@ public class Model_Chevalet {
 					nombre.add(rand);
 				}
 			}
+			LettreRemove = new ArrayList<String>();
 			for(int j=0; j<nombre.size();j++) {
 				String lettre = pioche.getLettre(nombre.get(j));
 				chevalet.add(lettre);
+				LettreRemove.add(lettre);
 			}
-			pioche.removeLettre(chevalet);
+			pioche.removeLettre(LettreRemove);
 			
 		}
 	}
