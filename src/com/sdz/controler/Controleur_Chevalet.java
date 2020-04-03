@@ -7,8 +7,9 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import com.sdz.model.ListeJoueurs;
+import com.sdz.model.Model_Choix_Joueur;
 import com.sdz.model.Model_Pioche;
-
+import com.sdz.vue.Vue;
 import com.sdz.vue.Vue_Chevalet_Joueur;
 
 
@@ -19,12 +20,16 @@ public class Controleur_Chevalet implements MouseListener, ActionListener {
 	Model_Pioche modelPioche;
 	ListeJoueurs listeJoueurs;
 	ArrayList<String> listLettre;
+	Vue vueglobale;
+	Model_Choix_Joueur choixJoueur;
 	
 	
-	public Controleur_Chevalet(Vue_Chevalet_Joueur v, Model_Pioche m, ListeJoueurs l) {
+	public Controleur_Chevalet(Vue_Chevalet_Joueur v, Model_Pioche m, ListeJoueurs l, Vue vg, Model_Choix_Joueur cj) {
 		this.vue=v;
 		this.modelPioche=m;
 		this.listeJoueurs=l;
+		this.vueglobale =vg;
+		this.choixJoueur= cj;
 	}
 
 	@Override
@@ -81,18 +86,16 @@ public class Controleur_Chevalet implements MouseListener, ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
-		if(source == vue.GetButtonPiocher()) {
-			if(listeJoueurs.GetChevalet(vue.GetNumJoueur()).size()<7){
-				listeJoueurs.addLettreHasardChevalet(vue.GetNumJoueur());
-				//listeJoueurs.ChangePointJoueur(vue.GetNumJoueur(), 5);
-			}
-			
-		}
-		else if(source == vue.GetButtonChangerLettre()) {
+		if(source == vue.GetButtonChangerLettre()) {
 			modelPioche.addLettre(vue.getListeLettreChevaletselectGreen());
 			listeJoueurs.removeListLettreChevalet(vue.GetNumJoueur(),vue.getListeLettreChevaletselectGreen());
 			for(int i=0;i<vue.getListeLettreChevaletselectGreen().size();i++) {
-				listeJoueurs.changeChevaletEtat(vue.GetNumJoueur(),i,0);	
+				listeJoueurs.changeChevaletEtat(vue.GetNumJoueur(),i,0);
+				int k = vue.GetNumJoueur()+1;
+				if(k>(listeJoueurs.getListeJoueur().size()-1)) {
+					k=0;
+				};
+				vueglobale.changeJoueur(choixJoueur,k);
 			}
 			vue.GetButtonChangerLettre().setVisible(false);
 			
