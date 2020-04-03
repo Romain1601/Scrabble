@@ -157,6 +157,11 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 					i=0;
 				}
 				motatester="";
+				for(int m = 0; m < matriceindice.length;m++){
+		            for(int n = 0; n < matriceindice[m].length; n++){
+		            	matriceindice[m][n]=null;
+		            }
+		        }
 				model.changeMatriceEtat(2);
 				vueglobale.changeJoueur(choixJoueur,i);
 			}
