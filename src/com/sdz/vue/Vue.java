@@ -58,7 +58,7 @@ public class Vue extends JFrame   {
 	public void start(Model_Choix_Joueur j) { 
 		inside.removeAll();
 		listeJoueurs = new ListeJoueurs(modelPioche , j.getlisteJoueur());
-		Vue_chevalet_joueur = new Vue_Chevalet_Joueur(j.getlisteJoueur().get(0).getNumJoueur(), modelPioche, listeJoueurs);
+		Vue_chevalet_joueur = new Vue_Chevalet_Joueur(j.getlisteJoueur().get(0).getNumJoueur(), modelPioche, listeJoueurs,this,j);
 		vue_plateau = new Vue_Plateau(listeJoueurs, j.getlisteJoueur().get(0).getNumJoueur(),this,j);
 		vue_point = new Vue_Point_Joueur(listeJoueurs);
 		inside.add(vue_plateau.GetVuePlateau());
@@ -79,8 +79,7 @@ public class Vue extends JFrame   {
 		inside.remove(Vue_chevalet_joueur.GetVueChevaletBoutton());
 		inside.remove(vue_plateau.GetVuePlateau());
 		inside.remove(vue_plateau.GetVuevalider());
-		//listeJoueurs = new ListeJoueurs(modelPioche , j.getlisteJoueur());
-		Vue_chevalet_joueur = new Vue_Chevalet_Joueur(j.getlisteJoueur().get(i).getNumJoueur(), modelPioche, listeJoueurs);
+		Vue_chevalet_joueur = new Vue_Chevalet_Joueur(j.getlisteJoueur().get(i).getNumJoueur(), modelPioche, listeJoueurs, this,j);
 		vue_plateau.changeControleur(i);
 		vue_plateau.update("valider");
 		
