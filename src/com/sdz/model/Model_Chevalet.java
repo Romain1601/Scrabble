@@ -23,15 +23,13 @@ public class Model_Chevalet {
 		if(getChevaletSize()<7) {
 			nombre = new ArrayList<Integer>();
 			if(pioche.getLength()>7) {
-				
-				for(int i=0; i<7; i++) {
+				for(int i=0; i<(7-chevalet.size()); i++) {
 					int rand =rnd.nextInt(pioche.getLength());
 					while(nombre.contains(rand)==true) {
 						rand =rnd.nextInt(pioche.getLength());
 					}
 					nombre.add(rand);
 				}
-				System.out.println(nombre);
 			}
 			else {
 				for(int i=0; i<pioche.getLength(); i++) {
@@ -50,6 +48,8 @@ public class Model_Chevalet {
 			
 		}
 	}
+	
+	
 	
 	public void addLettreChevalet(String Lettre) {
 		if(getChevaletSize()<7) {
