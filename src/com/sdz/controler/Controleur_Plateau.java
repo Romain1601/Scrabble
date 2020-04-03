@@ -1,12 +1,12 @@
 package com.sdz.controler;
-import java.awt.List;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
-import com.sdz.model.CalculPoint;
+
 import com.sdz.model.DictionnaireMots;
 import com.sdz.model.ListeJoueurs;
 import com.sdz.model.Model_Choix_Joueur;
@@ -144,10 +144,10 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
 		if(source == vue.Getboutonvalider()) {
-			for(int m = 0; m < matriceindice.length;m++){
-	            for(int n = 0; n < matriceindice[m].length; n++){
-	            	if(matriceindice[m][n]!=null) {
-	            		motatester=motatester+matriceindice[m][n];
+			for(int m = 0; m < model.getMatriceLettre().length;m++){
+	            for(int n = 0; n < model.getMatriceLettre()[m].length; n++){
+	            	if(model.getMatriceLettre()[m][n]!=null) {
+	            		motatester=motatester+model.getMatriceLettre()[m][n];
 	            	}
 	            }
 	        }
@@ -157,11 +157,7 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 					i=0;
 				}
 				motatester="";
-				for(int m = 0; m < matriceindice.length;m++){
-		            for(int n = 0; n < matriceindice[m].length; n++){
-		            	matriceindice[m][n]=null;
-		            }
-		        }
+				
 				model.changeMatriceEtat(2);
 				vueglobale.changeJoueur(choixJoueur,i);
 			}
