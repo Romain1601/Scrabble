@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import com.sdz.controler.Controleur_Chevalet;
 import com.sdz.model.ListeJoueurs;
 import com.sdz.model.Model_Chevalet;
+import com.sdz.model.Model_Choix_Joueur;
 import com.sdz.model.Model_Pioche;
 import com.sdz.observer.Observer;
 
@@ -21,7 +22,6 @@ public class Vue_Chevalet_Joueur implements Observer {
 	public JPanel NomJoueur = new JPanel();
 	public JPanel BoutonChevalet = new JPanel();
 	JLabel name = new JLabel();
-	JButton Piocher = new JButton("PIOCHER");
 	JButton changerLettre = new JButton("CHANGER");
 	
 	ListeJoueurs listeJoueurs;
@@ -32,20 +32,23 @@ public class Vue_Chevalet_Joueur implements Observer {
 	LettreChevalet lettreChevalet;
 	int numJoueur;
 	Color colorPiece = new Color(239, 210, 80);
+	Vue vueglobale;
+	Model_Choix_Joueur choixJoueur;
 	
 	
-	public Vue_Chevalet_Joueur(int num, Model_Pioche m, ListeJoueurs l) {
+	public Vue_Chevalet_Joueur(int num, Model_Pioche m, ListeJoueurs l, Vue vg, Model_Choix_Joueur cj) {
 		this.modelPioche =m;
 		this.numJoueur = num;
 		this.listeJoueurs = l;
-		controleur = new Controleur_Chevalet(this, modelPioche, listeJoueurs);
+		this.vueglobale=vg;
+		this.choixJoueur=cj;
+		controleur = new Controleur_Chevalet(this, modelPioche, listeJoueurs, vueglobale, choixJoueur);
 		listeJoueurs.addObserver(this);
 		modelPioche.addObserver(this);
 		NomJoueur.setBounds(100 ,750,450,50);
 		ChevaletJoueur.setLayout(new GridLayout(1,listeJoueurs.GetJoueur(num).getChevaletJoueur().getChevaletSize()));
 		ChevaletJoueur.setBounds(100 ,800,450,50);
 		BoutonChevalet.setBounds(100 ,900,450,50);
-		BoutonChevalet.add(Piocher);
 		if(listeJoueurs.GetsizeChevalet(numJoueur)==0) {
 			changerLettre.setVisible(false);
 		}
@@ -56,9 +59,8 @@ public class Vue_Chevalet_Joueur implements Observer {
 			
 			
 		BoutonChevalet.add(changerLettre);
-		this.Piocher.addActionListener(controleur);
 		this.changerLettre.addActionListener(controleur);
-		construireVueChevaletJoueur(num);
+		listeJoueurs.addLettreHasardChevalet(num);
 	}
 	
 	
@@ -78,9 +80,6 @@ public class Vue_Chevalet_Joueur implements Observer {
 		return BoutonChevalet;
 	}
 	
-	public JButton GetButtonPiocher() {
-		return Piocher;
-	}
 	
 	public JButton GetButtonChangerLettre() {
 		return changerLettre;
@@ -106,12 +105,6 @@ public class Vue_Chevalet_Joueur implements Observer {
 		name.setForeground(Color.BLACK);
 		NomJoueur.add(name);
 		Model_Chevalet  chevalet = listeJoueurs.GetJoueur(n).getChevaletJoueur();
-		if(listeJoueurs.GetsizeChevalet(numJoueur)==7) {
-			Piocher.setEnabled(false);
-		}
-		else if(listeJoueurs.GetsizeChevalet(numJoueur)<7) {
-			Piocher.setEnabled(true);
-		}
 		
 		
 		if(chevalet.getChevaletSize()!=0) {
