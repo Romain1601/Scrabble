@@ -47,7 +47,6 @@ public class Vue_Choix_Joueur implements Observer{
 	
 	
 	public void BuildVueChoixJoueur() {
-		System.out.println(listejtc);
 		formulaire.add(Start);
 		formulaire.add(Ajouter);
 		if(listeformulaire.size()>1) {
