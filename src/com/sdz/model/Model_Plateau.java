@@ -169,6 +169,11 @@ public class Model_Plateau extends Abstract_Model_Plateau  {
 		return  matriceLettre[x][y];
 	}
 	
+	public int getMatriceStatique(int x,int y) {
+		// TODO Auto-generated method stub
+		return  matriceStatique[x][y];
+	}
+	
 	
 	public int getMatriceEtatInt(int x,int y) {
 		// TODO Auto-generated method stub
