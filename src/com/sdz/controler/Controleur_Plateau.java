@@ -26,7 +26,19 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 	ArrayList<String> listelettre = new ArrayList<>();
 	String motatester="";
 	DictionnaireMots Dicos = new DictionnaireMots();
-	String[][] matriceindice = new String[15][15];
+	ArrayList<String> mot;
+	ArrayList<Integer> changementDirection;
+	ArrayList<ArrayList<String>> listemot;
+	ArrayList<Integer> multiplicateur;
+	ArrayList<ArrayList<Integer>> listemultiplicateur;
+	ArrayList<String> erreur =  new ArrayList<String>();
+	
+	int x1;
+	int x2;
+	int position;
+	int newlettrepose=0;
+	boolean premiertour;
+	
     
 	
 	
@@ -38,9 +50,6 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 		this.listeJoueurs=l;
 		this.NumJoueur=num;
 		this.vueglobale=vg;
-		for(int p = 0; p < matriceindice.length; p++){
-	        matriceindice[p] = new String[15];
-	    }
 	}
 	
 	public void mouseClicked(MouseEvent e) {
@@ -83,7 +92,6 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 							if(lettreselect!=null) {
 								if(model.getMatriceLettre(j, i)==null) {
 									model.addLettrePlateau(i,j,lettreselect);					
-									matriceindice[i][j]=lettreselect;
 									lettreselect = null;
 								}
 							
@@ -103,7 +111,6 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 						EtatSelect = model.getMatriceEtatInt(j,i);
 						if(lettreselect!=null && EtatSelect==1) {
 							model.removeLettrePlateau(i,j);
-							matriceindice[i][j]=null;
 							listeJoueurs.addLettreChevalet(NumJoueur,lettreselect);
 							for(int k=0;k<etat.length;k++) {
 								listeJoueurs.changeChevaletEtat(NumJoueur,k,0);
@@ -144,7 +151,244 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
 		if(source == vue.Getboutonvalider()) {
+			mot = new ArrayList<String>();
+			listemot = new ArrayList<ArrayList<String>>();
+			multiplicateur = new ArrayList<Integer>();
+			listemultiplicateur = new ArrayList<ArrayList<Integer>>();
+			boolean placementbon = true;
+			premiertour = true;
+			changementDirection = new ArrayList<Integer>();
+			x1=0;
+    		x2=0;
+    		newlettrepose=0;
+    		
 			for(int m = 0; m < model.getMatriceLettre().length;m++){
+	            for(int n = 0; n < model.getMatriceLettre()[m].length; n++){
+	            	if(model.getMatriceEtatInt(m, n)==1) {
+	            		newlettrepose+=1;
+	            		if(x1==m) {
+	            			position=1;
+	            		}
+	            		else if(x2==n) {
+	            			position=2;
+	            			
+	            		}
+	            		else if(newlettrepose==1) {
+	            			position=2;
+	            		}
+	            		else {
+	            			position=0;
+	            		}
+	            		changementDirection.add(position);
+	            		x1=m;
+	            		x2=n;
+	            	}
+	            	else if(model.getMatriceEtatInt(m, n)==2) {
+	            		premiertour=false;
+	            	}
+	            	
+	            }
+			}
+			
+			if(changementDirection.size()>1) {
+				if(changementDirection.get(1)!= changementDirection.get(changementDirection.size()-1)) {
+					placementbon=false;
+					erreur.add("vous devez placer vos lettre soit horizontalement ou soit verticalement, pas les deux a la fois");
+				}
+			}
+			
+			
+			
+			
+			
+			
+			if(placementbon==true) {
+				if(position==0 ){
+					mot = new ArrayList<String>();
+					if(newlettrepose<=1) {
+						erreur.add("vous devez placer plus de 2 lettres");
+					}
+					else {
+						erreur.add("vous devez placer vos lettres verticalement ou horizontalement");
+					}
+					
+				}
+				else if(position==1) {
+			            for(int n = 0; n < model.getMatriceLettre()[x1].length; n++){
+			            	if(model.getMatriceEtatInt(x1, n)==1 || model.getMatriceEtatInt(x1, n)==2 ) {
+			            		mot.add(model.getMatriceLettre(x1, n));
+			            		multiplicateur.add(model.getMatriceStatique(x1, n));
+			            	}
+			            }
+			            listemot.add(mot);
+			            listemultiplicateur.add(multiplicateur);
+			            multiplicateur = new ArrayList<Integer>();
+			            mot = new ArrayList<String>();
+			            for(int n = 0; n < model.getMatriceLettre()[x1].length; n++) {
+			            	if(model.getMatriceEtatInt(x1, n)==1 && model.getMatriceEtatInt(x1-1, n)==2) {
+			            		int i=0;
+			            		while(model.getMatriceEtatInt(x1-i, n)!=0) {
+			            			i+=1;
+			            		}
+			            		for(int m=x1-i; m< model.getMatriceLettre().length;m++) {
+			            			if(model.getMatriceEtatInt(m, n)==2 || model.getMatriceEtatInt(m, n)==1 ) {
+			            				mot.add(model.getMatriceLettre(m, n));
+			            				multiplicateur.add(model.getMatriceStatique(m, n));
+			            			}
+			            			
+			            		}
+			            		listemot.add(mot);
+					            mot = new ArrayList<String>();
+					            listemultiplicateur.add(multiplicateur);
+					            multiplicateur = new ArrayList<Integer>();
+		            		}
+			            }
+			            for(int n = 0; n < model.getMatriceLettre()[x1].length; n++) {
+			            	if(model.getMatriceEtatInt(x1, n)==1 && model.getMatriceEtatInt(x1+1, n)==2) {
+			            		int i=0;
+			            		while(model.getMatriceEtatInt(x1+i, n)!=0) {
+			            			i+=1;
+			            		}
+			            		for(int m=x1; m<x1+i;m++) {
+			            			if(model.getMatriceEtatInt(m, n)==2 || model.getMatriceEtatInt(m, n)==1 ) {
+			            				mot.add(model.getMatriceLettre(m, n));
+			            				multiplicateur.add(model.getMatriceStatique(m, n));
+			            			}
+			            			
+			            		}
+			            		listemot.add(mot);
+					            mot = new ArrayList<String>();
+					            listemultiplicateur.add(multiplicateur);
+					            multiplicateur = new ArrayList<Integer>();
+		            		}
+			            }
+				}
+				else {
+					for(int m = 0; m < model.getMatriceLettre().length;m++){
+						if(model.getMatriceEtatInt(m, x2)==1 || model.getMatriceEtatInt(m, x2)==2 ) {
+		            		mot.add(model.getMatriceLettre(m, x2));
+		            		multiplicateur.add(model.getMatriceStatique(m, x2));
+						}
+					}
+					listemot.add(mot);
+					mot = new ArrayList<String>();
+					 listemultiplicateur.add(multiplicateur);
+			            multiplicateur = new ArrayList<Integer>();
+					
+					for(int m = 0; m < model.getMatriceLettre().length;m++){
+			            	if(model.getMatriceEtatInt(m, x2)==1 && model.getMatriceEtatInt(m, x2-1)==2) {
+			            		int i=0;
+			            		while(model.getMatriceEtatInt(m, x2-i)!=0) {
+			            			i+=1;
+			            		}
+			            		for(int n=x2-i; n < model.getMatriceLettre()[m].length;n++) {
+			            			if(model.getMatriceEtatInt(m, n)==2 || model.getMatriceEtatInt(m, n)==1 ) {
+			            				mot.add(model.getMatriceLettre(m, n));
+			            				multiplicateur.add(model.getMatriceStatique(m, n));
+			            			}
+			            			
+			            		}
+			            		listemot.add(mot);
+					            mot = new ArrayList<String>();
+					            listemultiplicateur.add(multiplicateur);
+					            multiplicateur = new ArrayList<Integer>();
+		            		}
+			          }
+					
+					for(int m = 0; m < model.getMatriceLettre().length;m++){
+		            	if(model.getMatriceEtatInt(m, x2)==1 && model.getMatriceEtatInt(m, x2+1)==2) {
+		            		int i=0;
+		            		while(model.getMatriceEtatInt(m, x2+i)!=0) {
+		            			i+=1;
+		            		}
+		            		for(int n=x2; n < x2+i;n++) {
+		            			if(model.getMatriceEtatInt(m, n)==2 || model.getMatriceEtatInt(m, n)==1 ) {
+		            				mot.add(model.getMatriceLettre(m, n));
+		            				multiplicateur.add(model.getMatriceStatique(m, n));
+		            			}
+		            			
+		            		}
+		            		listemot.add(mot);
+				            mot = new ArrayList<String>();
+				            listemultiplicateur.add(multiplicateur);
+				            multiplicateur = new ArrayList<Integer>();
+	            		}
+					}
+				}	
+			}
+			
+		}
+		
+		if(premiertour==false) {
+			int k=0;
+			int v=0;
+			for(int m = 0; m < model.getMatriceLettre().length;m++){
+	            for(int n = 0; n < model.getMatriceLettre()[m].length; n++){
+	            	if(model.getMatriceEtatInt(m, n)==1){
+	            		k+=1;
+	            		if(model.getMatriceEtatInt(m+1, n)!=2 && model.getMatriceEtatInt(m-1,n)!=2 && model.getMatriceEtatInt(m ,n+1)!=2 &&  model.getMatriceEtatInt(m ,n-1)!=2) {
+	            			v+=1;
+	            		}
+	            	}
+	            }
+			}
+			if(k==v) {
+				erreur.add("vous devez placer vos lettres a coté de celle deja placé");
+			}
+		}
+		
+		if(erreur.size()==0) {
+			int i = NumJoueur+1;
+			if(i>(listeJoueurs.getListeJoueur().size()-1)) {
+				i=0;
+			}
+			motatester="";
+			model.changeMatriceEtat(2);
+			vueglobale.changeJoueur(choixJoueur,i);
+			if(listemot.size()>0) {
+				System.out.println(listemot);
+				System.out.println(listemultiplicateur);
+				
+			}
+		}
+		else {
+			for(int i=0; i<erreur.size();i++) {
+				System.out.println(erreur.get(i));
+			}
+			erreur = new ArrayList<String>();
+		}
+		
+			
+		
+		
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			/*for(int m = 0; m < model.getMatriceLettre().length;m++){
 	            for(int n = 0; n < model.getMatriceLettre()[m].length; n++){
 	            	if(model.getMatriceLettre()[m][n]!=null) {
 	            		motatester=motatester+model.getMatriceLettre()[m][n];
@@ -152,20 +396,20 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 	            }
 	        }
 			if(DictionnaireMots.motExistant(motatester)) {
+				System.out.println("good");
 				int i = NumJoueur+1;
-				if(i>(listeJoueurs.getListeJoueur().size()-1)) {
-					i=0;
-				}
-				motatester="";
-				
-				model.changeMatriceEtat(2);
-				vueglobale.changeJoueur(choixJoueur,i);
+			if(i>(listeJoueurs.getListeJoueur().size()-1)) {
+				i=0;
+			}
+			motatester="";
+			model.changeMatriceEtat(2);
+			vueglobale.changeJoueur(choixJoueur,i);
 			}
 			else {
 				System.out.println(motatester);
-			}
+			}*/
 		}
 		
 	}
 
-}
+
