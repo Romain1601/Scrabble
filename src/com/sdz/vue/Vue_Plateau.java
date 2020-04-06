@@ -119,7 +119,7 @@ public class Vue_Plateau extends JPanel implements Observer {
 	        				break;
 	        			case 2:
 	        				grilleButton[i][j].setBackground(colorLD);
-	        				grilleButton[i][j].setText("LT");
+	        				grilleButton[i][j].setText("LD");
 	        				break;
 	        			case 1:
 	        				grilleButton[i][j].setBackground(colorDep);
