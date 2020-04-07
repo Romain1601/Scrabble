@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import com.sdz.model.DictionnaireMots;
 import com.sdz.model.ListeJoueurs;
 import com.sdz.model.Model_Choix_Joueur;
+import com.sdz.model.Model_Message;
 import com.sdz.model.Model_Plateau;
 import com.sdz.vue.Vue;
 import com.sdz.vue.Vue_Plateau;
@@ -23,6 +24,7 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 	Integer EtatSelect; 
 	Vue vueglobale;
 	Model_Choix_Joueur choixJoueur;
+	Model_Message modelMessage;
 	ArrayList<String> listelettre = new ArrayList<>();
 	String motatester="";
 	DictionnaireMots Dicos = new DictionnaireMots();
@@ -43,10 +45,11 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 	
 	
 	
-	public Controleur_Plateau(Vue_Plateau v, Model_Plateau m, ListeJoueurs l, int num, Vue vg , Model_Choix_Joueur j) {
+	public Controleur_Plateau(Vue_Plateau v, Model_Plateau m, ListeJoueurs l, int num, Vue vg , Model_Choix_Joueur j, Model_Message me) {
 		this.choixJoueur =j;
 		this.vue=v;
 		this.model=m;
+		this.modelMessage =me;
 		this.listeJoueurs=l;
 		this.NumJoueur=num;
 		this.vueglobale=vg;
@@ -151,6 +154,8 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
 		if(source == vue.Getboutonvalider()) {
+			modelMessage.resetListError();
+			modelMessage.resetSuccess();
 			mot = new ArrayList<String>();
 			listemot = new ArrayList<ArrayList<String>>();
 			multiplicateur = new ArrayList<Integer>();
@@ -193,23 +198,18 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 			if(changementDirection.size()>1) {
 				if(changementDirection.get(1)!= changementDirection.get(changementDirection.size()-1)) {
 					placementbon=false;
-					erreur.add("vous devez placer vos lettre soit horizontalement ou soit verticalement, pas les deux a la fois");
+					modelMessage.addError("vous devez placer vos lettre soit horizontalement ou soit verticalement, pas les deux a la fois");
 				}
 			}
-			
-			
-			
-			
-			
 			
 			if(placementbon==true) {
 				if(position==0 ){
 					mot = new ArrayList<String>();
 					if(newlettrepose<=1) {
-						erreur.add("vous devez placer plus de 2 lettres");
+						modelMessage.addError("vous devez placer plus de 2 lettres");
 					}
 					else {
-						erreur.add("vous devez placer vos lettres verticalement ou horizontalement");
+						modelMessage.addError("vous devez placer vos lettres verticalement ou horizontalement");
 					}
 					
 				}
@@ -333,11 +333,11 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 	            }
 			}
 			if(k==v) {
-				erreur.add("vous devez placer vos lettres a coté de celle deja placé");
+				modelMessage.addError("vous devez placer vos lettres a coté de celle deja placé");
 			}
 		}
 		
-		if(erreur.size()==0) {
+		if(modelMessage.getListError().size()==0) {
 			int i = NumJoueur+1;
 			if(i>(listeJoueurs.getListeJoueur().size()-1)) {
 				i=0;
@@ -350,12 +350,6 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 				System.out.println(listemultiplicateur);
 				
 			}
-		}
-		else {
-			for(int i=0; i<erreur.size();i++) {
-				System.out.println(erreur.get(i));
-			}
-			erreur = new ArrayList<String>();
 		}
 		
 			
