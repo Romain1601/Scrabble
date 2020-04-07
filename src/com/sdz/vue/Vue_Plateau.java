@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import com.sdz.controler.Controleur_Plateau;
 import com.sdz.model.ListeJoueurs;
 import com.sdz.model.Model_Choix_Joueur;
+import com.sdz.model.Model_Message;
 import com.sdz.model.Model_Plateau;
 import com.sdz.observer.Observer;
 
@@ -32,6 +33,7 @@ public class Vue_Plateau extends JPanel implements Observer {
 	Controleur_Plateau controleur;
 	ListeJoueurs listeJoueurs;
 	Model_Choix_Joueur choixJoueur;
+	Model_Message modelMessage;
 	Vue vueglobale;
 	int NumJoueur;
 	Color colorMT = new Color(225, 33, 110);
@@ -49,12 +51,13 @@ public class Vue_Plateau extends JPanel implements Observer {
 
 	
 
-	public Vue_Plateau(ListeJoueurs l, int num, Vue v, Model_Choix_Joueur j) {
+	public Vue_Plateau(ListeJoueurs l, int num, Vue v, Model_Choix_Joueur j, Model_Message m) {
 		this.choixJoueur =j;
+		this.modelMessage =m;
 		this.listeJoueurs=l;
 		this.NumJoueur = num;
 		this.vueglobale = v;
-		controleur = new Controleur_Plateau(this, ModelPlateau, listeJoueurs, NumJoueur, vueglobale, choixJoueur);
+		controleur = new Controleur_Plateau(this, ModelPlateau, listeJoueurs, NumJoueur, vueglobale, choixJoueur, modelMessage);
 		ModelPlateau.addObserver(this);
 		plateau.setLayout(new GridLayout(15,15));
 		plateau.setBounds(20,20,650,650);
