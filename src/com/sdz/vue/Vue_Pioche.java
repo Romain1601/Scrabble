@@ -54,7 +54,7 @@ public class Vue_Pioche extends JPanel implements Observer {
 	public void update(String str) {
 		pioche.removeAll();
 		construireVuePioche();
-		pioche.updateUI();;
+		pioche.updateUI();
 		
 	}
 
