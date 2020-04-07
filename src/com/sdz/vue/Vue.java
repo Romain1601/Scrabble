@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import com.sdz.model.ListeJoueurs;
 import com.sdz.model.Model_Choix_Joueur;
+import com.sdz.model.Model_Message;
 import com.sdz.model.Model_Pioche;
 import com.sdz.vue.Vue_Plateau;
 
@@ -25,7 +26,8 @@ public class Vue extends JFrame   {
 	Model_Pioche modelPioche;
 	Vue_Pioche vue_pioche;
 	Vue_Choix_Joueur menuJoueur;
-	
+	Model_Message modelMessage;
+	Vue_Message vueMessage;
 	
 
 	ListeJoueurs listeJoueurs;
@@ -39,6 +41,8 @@ public class Vue extends JFrame   {
 		this.modelPioche =m;
 		vue_pioche = new Vue_Pioche(modelPioche);
 		menuJoueur = new Vue_Choix_Joueur(modelPioche,this);
+		modelMessage = new Model_Message();
+		vueMessage = new Vue_Message(modelMessage);
 		fenetre.setTitle("Scrabble");
 		fenetre.setSize(1000, 1000);
 		fenetre.setLocationRelativeTo(null); 
@@ -58,12 +62,12 @@ public class Vue extends JFrame   {
 	public void start(Model_Choix_Joueur j) { 
 		inside.removeAll();
 		listeJoueurs = new ListeJoueurs(modelPioche , j.getlisteJoueur());
-		Vue_chevalet_joueur = new Vue_Chevalet_Joueur(j.getlisteJoueur().get(0).getNumJoueur(), modelPioche, listeJoueurs,this,j);
-		vue_plateau = new Vue_Plateau(listeJoueurs, j.getlisteJoueur().get(0).getNumJoueur(),this,j);
+		Vue_chevalet_joueur = new Vue_Chevalet_Joueur(j.getlisteJoueur().get(0).getNumJoueur(), modelPioche, listeJoueurs,this,j,modelMessage);
+		vue_plateau = new Vue_Plateau(listeJoueurs, j.getlisteJoueur().get(0).getNumJoueur(),this,j,modelMessage);
 		vue_point = new Vue_Point_Joueur(listeJoueurs);
 		inside.add(vue_plateau.GetVuePlateau());
 		inside.add(vue_plateau.GetVuevalider());
-		
+		inside.add(vueMessage.GetPanelMessage());
 		inside.add(vue_pioche.GetVuePioche());
 		inside.add(Vue_chevalet_joueur.GetVueNomJoueur());
 		inside.add(Vue_chevalet_joueur.GetVueChevaletJoueur());
@@ -79,7 +83,7 @@ public class Vue extends JFrame   {
 		inside.remove(Vue_chevalet_joueur.GetVueChevaletBoutton());
 		inside.remove(vue_plateau.GetVuePlateau());
 		inside.remove(vue_plateau.GetVuevalider());
-		Vue_chevalet_joueur = new Vue_Chevalet_Joueur(j.getlisteJoueur().get(i).getNumJoueur(), modelPioche, listeJoueurs, this,j);
+		Vue_chevalet_joueur = new Vue_Chevalet_Joueur(j.getlisteJoueur().get(i).getNumJoueur(), modelPioche, listeJoueurs, this,j,modelMessage);
 		vue_plateau.changeControleur(i);
 		vue_plateau.update("valider");
 		
