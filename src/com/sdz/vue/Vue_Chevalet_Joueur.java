@@ -13,6 +13,7 @@ import com.sdz.controler.Controleur_Chevalet;
 import com.sdz.model.ListeJoueurs;
 import com.sdz.model.Model_Chevalet;
 import com.sdz.model.Model_Choix_Joueur;
+import com.sdz.model.Model_Message;
 import com.sdz.model.Model_Pioche;
 import com.sdz.observer.Observer;
 
@@ -34,15 +35,17 @@ public class Vue_Chevalet_Joueur implements Observer {
 	Color colorPiece = new Color(239, 210, 80);
 	Vue vueglobale;
 	Model_Choix_Joueur choixJoueur;
+	Model_Message ModelMessage;
 	
 	
-	public Vue_Chevalet_Joueur(int num, Model_Pioche m, ListeJoueurs l, Vue vg, Model_Choix_Joueur cj) {
+	public Vue_Chevalet_Joueur(int num, Model_Pioche m, ListeJoueurs l, Vue vg, Model_Choix_Joueur cj , Model_Message me) {
 		this.modelPioche =m;
 		this.numJoueur = num;
 		this.listeJoueurs = l;
 		this.vueglobale=vg;
 		this.choixJoueur=cj;
-		controleur = new Controleur_Chevalet(this, modelPioche, listeJoueurs, vueglobale, choixJoueur);
+		this.ModelMessage =me;
+		controleur = new Controleur_Chevalet(this, modelPioche, listeJoueurs, vueglobale, choixJoueur, ModelMessage);
 		listeJoueurs.addObserver(this);
 		modelPioche.addObserver(this);
 		NomJoueur.setBounds(100 ,750,450,50);
