@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import com.sdz.model.ListeJoueurs;
 import com.sdz.model.Model_Choix_Joueur;
+import com.sdz.model.Model_Message;
 import com.sdz.model.Model_Pioche;
 import com.sdz.vue.Vue;
 import com.sdz.vue.Vue_Chevalet_Joueur;
@@ -21,15 +22,17 @@ public class Controleur_Chevalet implements MouseListener, ActionListener {
 	ListeJoueurs listeJoueurs;
 	ArrayList<String> listLettre;
 	Vue vueglobale;
+	Model_Message ModelMessage;
 	Model_Choix_Joueur choixJoueur;
 	
 	
-	public Controleur_Chevalet(Vue_Chevalet_Joueur v, Model_Pioche m, ListeJoueurs l, Vue vg, Model_Choix_Joueur cj) {
+	public Controleur_Chevalet(Vue_Chevalet_Joueur v, Model_Pioche m, ListeJoueurs l, Vue vg, Model_Choix_Joueur cj, Model_Message me) {
 		this.vue=v;
 		this.modelPioche=m;
 		this.listeJoueurs=l;
 		this.vueglobale =vg;
 		this.choixJoueur= cj;
+		this.ModelMessage =me;
 	}
 
 	@Override
