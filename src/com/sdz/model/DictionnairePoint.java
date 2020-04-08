@@ -7,32 +7,32 @@ public class DictionnairePoint {
 	static TreeMap<String, Integer> liste = new TreeMap<>();
 	
 	public DictionnairePoint() {
-		liste.put("a", 1);
-		liste.put("b", 3);
-		liste.put("c", 3);
-		liste.put("d", 2);
-		liste.put("e", 1);
-		liste.put("f", 4);
-		liste.put("g", 2);
-		liste.put("h", 4);
-		liste.put("i", 1);
-		liste.put("j", 8);
-		liste.put("k", 10);
-		liste.put("l", 1);
-		liste.put("m", 2);
-		liste.put("n", 1);
-		liste.put("o", 1);
-		liste.put("p", 3);
-		liste.put("q", 8);
-		liste.put("r", 1);
-		liste.put("s", 1);
-		liste.put("t", 1);
-		liste.put("u", 1);
-		liste.put("v", 4);
-		liste.put("w", 10);
-		liste.put("x", 10);
-		liste.put("y", 10);
-		liste.put("z", 10);
+		liste.put("A", 1);
+		liste.put("B", 3);
+		liste.put("C", 3);
+		liste.put("D", 2);
+		liste.put("E", 1);
+		liste.put("F", 4);
+		liste.put("G", 2);
+		liste.put("H", 4);
+		liste.put("I", 1);
+		liste.put("J", 8);
+		liste.put("K", 10);
+		liste.put("L", 1);
+		liste.put("M", 2);
+		liste.put("N", 1);
+		liste.put("O", 1);
+		liste.put("P", 3);
+		liste.put("Q", 8);
+		liste.put("R", 1);
+		liste.put("S", 1);
+		liste.put("T", 1);
+		liste.put("U", 1);
+		liste.put("V", 4);
+		liste.put("W", 10);
+		liste.put("X", 10);
+		liste.put("Y", 10);
+		liste.put("Z", 10);
     }
 	
 	
