@@ -3,7 +3,7 @@ package com.sdz.vue;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
+
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -29,7 +29,6 @@ public class Vue_Message implements Observer {
 		message.addObserver(this);
 		Border blackline = BorderFactory.createLineBorder(Color.black);
 		PanelMessage.setBounds(712,300,250,370);
-		PanelMessage.setLayout(new GridBagLayout());
 		PanelMessage.setBorder(blackline);
 		construireVueMessage();
 	}
