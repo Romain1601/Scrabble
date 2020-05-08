@@ -65,6 +65,7 @@ public class Vue_Point_Joueur implements Observer{
 			OnePoint.setBackground(Color.BLACK);
 			Nom = new JLabel(lj.getListeJoueur().get(i).getNameJoueur());
 			point = new JLabel(String.valueOf(lj.getListeJoueur().get(i).getPointJoueur()));
+			//System.out.println(String.valueOf(lj.getListeJoueur().get(i).getPointJoueur()));
 			Nom.setForeground(Color.WHITE);
 			Nom.setFont(new Font("Arial",Font.BOLD,16));
 			Nom.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -93,6 +94,7 @@ public class Vue_Point_Joueur implements Observer{
 		panelPoint.updateUI();
 		paneltitrePoint.updateUI();
 		GridPoint.updateUI();
+		
 		
 	}
 
