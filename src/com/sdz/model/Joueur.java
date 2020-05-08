@@ -20,13 +20,13 @@ public class Joueur {
 		return name;
 	}
 	
-	
 	public int getPointJoueur() {
 		return point;
 	}
 	
 	public void addPointJoueur(int p) {
-		point+=p;
+		this.point+=p;
+		System.out.println(this.name+ "="+this.point+"et"+p);
 	}
 	
 	public Model_Chevalet getChevaletJoueur() {
