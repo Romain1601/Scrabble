@@ -47,17 +47,20 @@ public class Controleur_Chevalet implements MouseListener, ActionListener {
 		int buttonDown = e.getButton();
 		for(int i=0;i<listeJoueurs.GetsizeChevalet(vue.GetNumJoueur());i++) {
 			if(buttonDown == MouseEvent.BUTTON1) {
+				
 				if(e.isControlDown() && source == vue.getListeButtonChevalet().get(i).GetButton()) {
 					listeJoueurs.changeChevaletEtat(vue.GetNumJoueur(),i,2);
 					vue.GetButtonChangerLettre().setVisible(true);
 			    }
 				else if(source == vue.getListeButtonChevalet().get(i).GetButton()) {
+					vue.GetButtonChangerLettre().setVisible(false);
 					listeJoueurs.changeChevaletEtat(vue.GetNumJoueur(),i,1);
 					
 					//changerLettre.setEnabled(false);
 				}
 			}
 			else if(buttonDown == MouseEvent.BUTTON3) {
+				vue.GetButtonChangerLettre().setVisible(false);
 				if(source == vue.getListeButtonChevalet().get(i).GetButton()) {
 					listeJoueurs.changeChevaletEtat(vue.GetNumJoueur(),i,0);
 				}
@@ -94,12 +97,12 @@ public class Controleur_Chevalet implements MouseListener, ActionListener {
 			listeJoueurs.removeListLettreChevalet(vue.GetNumJoueur(),vue.getListeLettreChevaletselectGreen());
 			for(int i=0;i<vue.getListeLettreChevaletselectGreen().size();i++) {
 				listeJoueurs.changeChevaletEtat(vue.GetNumJoueur(),i,0);
-				int k = vue.GetNumJoueur()+1;
-				if(k>(listeJoueurs.getListeJoueur().size()-1)) {
-					k=0;
-				};
-				vueglobale.changeJoueur(choixJoueur,k);
 			}
+			int k = vue.GetNumJoueur()+1;
+			if(k>(listeJoueurs.getListeJoueur().size()-1)) {
+				k=0;
+			};
+			vueglobale.changeJoueur(choixJoueur,k);
 			vue.GetButtonChangerLettre().setVisible(false);
 			
 			
