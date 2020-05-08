@@ -144,6 +144,7 @@ public class ListeJoueurs implements Observable{
 	public void ChangePointJoueur(int num, int p) {
 		for(int i=0;i<ListeJoueur.size();i++) {
 			if(ListeJoueur.get(i).getNumJoueur()==num) {
+				System.out.println("coucou"+p);
 				ListeJoueur.get(i).addPointJoueur(p);
 				notifyObserver(String.valueOf(num));	
 			}
