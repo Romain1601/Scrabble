@@ -4,20 +4,16 @@ import java.util.ArrayList;
 
 public class CalculPoint extends DictionnairePoint {
 
-	static String mot;
-	static int point;
-	static DictionnairePoint liste = new DictionnairePoint();
+	String mot;
+	int point;
+	DictionnairePoint liste;
 
 
-	public CalculPoint(String m) {
-		CalculPoint.mot = m;
-		for(int i=0; i<m.length();i++) {
-			String s = Character.toString(m.charAt(i));
-			point+=getvalue(s);
-		}
+	public CalculPoint() {
+		liste = new DictionnairePoint();
 	}
 
-	public static int Point(String mt,ArrayList<Integer> mlt) {
+	public int Point(String mt, ArrayList<Integer> mlt) {
 		int multiplicateur=1;
 		point=0;
 		boolean motd=false;
@@ -50,7 +46,6 @@ public class CalculPoint extends DictionnairePoint {
 		}
 		else if (mott==true) {
 			point=point*3;
-			
 		}
 		return point;
 	}
