@@ -26,6 +26,7 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 	Vue vueglobale;
 	Model_Choix_Joueur choixJoueur;
 	Model_Message modelMessage;
+	CalculPoint CP = new CalculPoint();
 	ArrayList<String> listelettre = new ArrayList<>();
 	String motatester="";
 	int pts;
@@ -37,7 +38,7 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 	ArrayList<ArrayList<String>> listemot;
 	ArrayList<Integer> multiplicateur;
 	ArrayList<ArrayList<Integer>> listemultiplicateur;
-	ArrayList<String> erreur =  new ArrayList<String>();
+	ArrayList<String> erreur = new ArrayList<String>();
 
 	int x1;
 	int x2;
@@ -410,7 +411,7 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 				}
 			}
 			if(k==v) {
-				modelMessage.addError("vous devez placer vos lettres a cotï¿½ de celle deja placï¿½");
+				modelMessage.addError("vous devez placer vos lettres a coté de celle deja placé");
 			}
 		}
 
@@ -422,30 +423,32 @@ public class Controleur_Plateau implements MouseListener, ActionListener {
 				for(int p = 0; p< listemot.size();p++){
 					for(int a = 0; a< listemot.get(p).size();a++){
 						motatester=motatester + listemot.get(p).get(a);
+						System.out.println("franchement"+motatester);
 					} 
+					
 					if(!DictionnaireMots.motExistant(motatester)) {
 						checkmot=false;
 						modelMessage.addError("'" + motatester + "' : faux");
+						erreur.add("1");
 					}
+					
 					else {
-						pts=CalculPoint.Point(motatester,listemultiplicateur.get(p));
-						modelMessage.addSuccess("'" + motatester + "' : " +pts+ " pts");
+						pts=CP.Point(motatester,listemultiplicateur.get(p));
+						modelMessage.addSuccess("'" + motatester + "' : " +pts+ " pts");	
 					}
-
-					pts=0;
 					motatester="";
-
 				}
-
+				
 				if(checkmot!=false) {
 					int i = NumJoueur+1;
+					listeJoueurs.ChangePointJoueur(NumJoueur, pts);
 					if(i>(listeJoueurs.getListeJoueur().size()-1)) {
 						i=0;
 					}
+					pts=0;
 					motatester="";
 					model.changeMatriceEtat(2);
 					vueglobale.changeJoueur(choixJoueur,i);
-
 				}			
 			}
 		}
